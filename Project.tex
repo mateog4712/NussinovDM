@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+%\doublespacing
+
+
+
+\title{An Application of Single Core Optimization to Nussinov }
+\author{Mateo Gray and Hamza Iseric }
+\date{February 23 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+A big topic in the field of Bioinformatics is that of secondary structure prediction for molecules such as RNA and proteins. RNA can be looked at as a string of four characters: A, G, C, and U. Each of these characters are called bases and the long string is called the primary structure of the RNA. The secondary structure looks at what occurs when the primary structure of the RNA folds back on itself. As an RNA strand folds, the bases on the strand bond with other bases on the strand and form what is termed a base pair. This folding is done to increase the stability of molecule. The importance of folding, however, is that it often relates to functionality. An example of this is found with telomerase, a type of enzyme or protein found in the body. Telomerase is non-functional if the structure does not fold in a specific way. This non-functionality leads to it being recycled instead. Another example is found with Viruses which can form structures that allow them to carry out tasks such as infiltrating a cell. While there are more biology-focused methods of observing secondary structures, such as spectroscopy and circular dichroism, they are often very expensive and time consuming. Instead, to predict the secondary structure, secondary structure prediction algorithms have been developed. These algorithms are not perfect in their predictions but they are able to do quite well. While these algorithms are much faster than the other methods, speed is still an important characteristic. The sequences used can be up to hundreds of thousands of characters long. With such long sequences, and the computational requirement in predicting their structures, the benefit in time grows smaller and smaller. This is coupled with the fact that many sequences are needed to be predicted. In the wake of this list of computationally heavy tasks, every bit of speed up is important both application wise and showing why a respective algorithm should be used compared to others.
+
+\section*{Algorithmic Description}
+This paper explores the Nussinov Algorithm. The Nussinov algorithm looks at predicting secondary structure in RNA sequences. As an input, it takes long string of characters and gives back the structure which is visualized  through 3 different characters. The first two characters are parentheses: '(' and ')'. These are used to show when two bases are paired. The other character is a period: '.' which is used to show when there is an unpaired base. In both the input and output, the data structure used is a string. There are 2 main parts to the algorithm. The first part defines an n by n matrix where n is the length of the input. Each index in the matrix corresponds to a to the ith and jth letter in the sequence where i and j are the row and column. With that, it is important to point out that since this the same sequence, this matrix can be viewed as a triangular matrix (thus reducing the insertions) and all indexes that are the same will not be looked at either. For the remaining indexes, the algorithm will move through diagonally through the matrix and perform four operations: 1) It will take the value of the ith+1 index, 2) it will take the value of the jth-1 index,3) it will check to see if a match is possible, if so, it will take 1 + the value of the ith+1,jth-1 index, and 4) It will take value in the case of the string being spliced. 
+
+\end{document}
