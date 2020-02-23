@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-//#include "baseline.hpp"
+ #include "baseline.hpp"
 #include <string>
 #include "testCases.cpp"
 #include <chrono>
@@ -15,12 +15,23 @@ int main() {
 	auto start = chrono::steady_clock::now();
 	for(auto i=0;i<testData.size();i++){
 
-		nussinov(testData[i]);
+		// nussinov(testData[i]);
+		nussinovOpt(testData[i]);
+
 	}
 	auto end = chrono::steady_clock::now();
 
 	cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
-	
+	start = chrono::steady_clock::now();
+	for(auto i=0;i<testData.size();i++){
+
+		// nussinov(testData[i]);
+		nussinovOpt2(testData[i]);
+		
+	}
+	end = chrono::steady_clock::now();
+
+	cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
 
 	
 	return 0;
