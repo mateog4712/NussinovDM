@@ -6,6 +6,7 @@
 #include <chrono>
 #include <unistd.h>
 #include "optimized.hpp"
+#include "bottomUp.hpp"
 
 using namespace std;
 int main() {
