@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool matchOpt(string &sequence,uint16_t i,uint16_t j)
+bool match3(string &sequence,uint16_t i,uint16_t j)
 {
 	if ( ((sequence[i] == 'A' and sequence[j] == 'U' ) or (sequence[i] == 'G' and sequence[j] == 'C' )) and j-i>3)
 		return 1;
@@ -17,18 +17,7 @@ bool matchOpt(string &sequence,uint16_t i,uint16_t j)
 	return 0;
 }
 
-void printTable(auto T){
-	for(uint16_t i=0;i<T.size();i++){
-		for(uint16_t j=0;j<T.size();j++){
 
-			cout << T[i][j] << " ";
-		}
-		cout<<endl;
-
-	}
-
-
-}
 
 void nussinovOpt(string sequence){
 
@@ -47,6 +36,11 @@ void nussinovOpt(string sequence){
 		{
 			if (i<j)
 			{
+				uint16_t m1 = table[i][j-1];
+				uint16_t m2 = table[i+1][j];
+
+				// table[i][j] = max(m1,m2);
+				// tableT[j][i] = max(m1,m2);
 
 				auto mB = matchOpt(sequence,i,j);
 				uint16_t m3 = 0;
@@ -55,11 +49,11 @@ void nussinovOpt(string sequence){
 
 				// table[i][j] = max(table[i][j],m3);
 				// tableT[j][i] = max(tableT[j][i],m3);
-				if(mB)
-					m3 = table[i+1][j-1] + mB;
+				if(matchOpt(sequence,i,j) )
+					m3 = table[i+1][j-1] + matchOpt(sequence,i,j);
 				
 				uint16_t m4 = 0;
-				for (uint16_t k = i;k<j;k++)
+				for (uint16_t k = i+1;k<j;k++)
 				{
 					if (table[i][k] + table[j][k+1] > m4)
 						m4 = table[i][k] + table[j][k+1];
@@ -69,9 +63,9 @@ void nussinovOpt(string sequence){
 
 				// table[i][j] = max(table[i][j],m4);
 				// tableT[j][i] = max(tableT[j][i],m4);
-				// uint16_t ins = max(m3,m4);
-				table[i][j] = max(m3,m4);
-				table[j][i] = max(m3,m4);
+				uint16_t ins = max(m1,max(m2,max(m3,m4)));
+				table[i][j] = ins;
+				table[j][i] = ins;
 
 			}
 		}
@@ -82,20 +76,76 @@ void nussinovOpt(string sequence){
 	}
 
 
-//aprintTable(table);
-//cout<<endl;
-//printTable(tableT);
+	//aprintTable(table);
+	//cout<<endl;
+	//printTable(tableT);
 
-string structure = "";
-uint16_t energy = table[0][len-1];
+	string structure = "";
+	uint16_t energy = table[0][len-1];
 
-// structure = tracebackOpt(table, 0, len-1, sequence);
+	// structure = tracebackOpt(table, 0, len-1, sequence);
 
-// cout << sequence << endl;
-// cout << structure << endl;
-// cout << energy << endl;
+	// cout << sequence << endl;
+	// cout << structure << endl;
+	cout << energy << endl;
 
 }
+
+
+void nussinov2(string sequence){
+
+	//take len of the sequence for further use
+	uint16_t len = sequence.length();
+	cout<< "Length: "<< len << endl;
+
+	//first we initialize the matrics D
+	vector< vector<uint16_t> > table(len,vector<uint16_t>(len));
+	//printTable(table);
+
+	for (uint16_t i =len-1;i>=0;i--)
+	{
+		for(uint16_t j=i;j<len;j++)
+		{
+			if (i<j)
+			{
+				uint16_t m1 = table[i][j-1];
+				uint16_t m2 = table[i+1][j];
+				uint16_t m3 = table[i+1][j-1] * mB + mB*mB;
+				if(match2(sequence,i,j) )
+					m3 = table[i+1][j-1] + match2(sequence,i,j);
+				else 
+					m3 = 0;
+				uint16_t m4 = 0;
+				for (uint16_t k = i+1;k<j;k++)
+				{
+					if (table[i][k] + table[k+1][j] > m4)
+						m4 = table[i][k] + table[k+1][j];
+				}
+					//cout << m1 << " " << m2 << " " << m3 << " " << m4 << endl;
+					table[i][j] = max(m1,max(m2,max(m3,m4)));
+			}
+		}
+		if(i==0)
+		{
+		break;
+		} 
+	}
+
+	//cout<<endl;
+	//printTable(table);
+
+	string structure = "";
+	uint16_t energy = table[0][len-1];
+
+	structure = traceback(table, 0, len-1, sequence);
+
+	cout << sequence << endl;
+	cout << structure << endl;
+	cout << energy << endl;
+
+}
+
+
 
 // This will traceback through the table defined in nussinov
 string tracebackOpt(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, string sequence){

@@ -37,7 +37,7 @@ void nussinov3(string sequence){
 			{
 				uint16_t m1 = table[i][j-1];
 				uint16_t m2 = table[i+1][j];
-				auto mB = match3(sequence,i,j);
+				auto mb = match3(sequence,i,j);
 				uint16_t m3 = table[i+1][j-1] * mB + mB*mB;
 				uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j;k++)
@@ -96,5 +96,4 @@ string traceback3(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, st
 			}
 		}
 	}
-	return "";
 }

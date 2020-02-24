@@ -74,32 +74,31 @@ void nussinov2(string sequence){
 // This will traceback through the table defined in nussinov
 string traceback2(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, string sequence){
 
-	if(i>j)
-	{
-		return "";
-	}
+if(i>j)
+{
+	return "";
+}
 
-	if(table[i+1][j-1] + 1 == table[i][j] and match2(sequence,i,j))
-	{
+if(table[i+1][j-1] + 1 == table[i][j] and match2(sequence,i,j))
+{
 
-	return "(" + traceback2(table,i+1,j-1,sequence) + ")";
-	}
-	else if(table[i+1][j] == table[i][j])
-	{
-		return "." + traceback2(table,i+1,j,sequence);
-	}
-	else if(table[i][j-1] == table[i][j])
-	{
-		return traceback2(table,i,j-1,sequence) + ".";
-	}
-	else{
+return "(" + traceback2(table,i+1,j-1,sequence) + ")";
+}
+else if(table[i+1][j] == table[i][j])
+{
+	return "." + traceback2(table,i+1,j,sequence);
+}
+else if(table[i][j-1] == table[i][j])
+{
+	return traceback2(table,i,j-1,sequence) + ".";
+}
+else{
 
-		for(uint16_t k = i+1; k<j;k++){
+	for(uint16_t k = i+1; k<j;k++){
 
-			if(table[i][k] + table[k+1][j] == table[i][j]){
-			return traceback(table,i,k,sequence) + traceback2(table,k+1,j,sequence);		
-			}
+		if(table[i][k] + table[k+1][j] == table[i][j]){
+		return traceback(2table,i,k,sequence) + traceback2(table,k+1,j,sequence);		
 		}
 	}
-	return "";
+}
 }

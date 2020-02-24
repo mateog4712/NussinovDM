@@ -96,5 +96,4 @@ string traceback3(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, st
 			}
 		}
 	}
-	return "";
 }

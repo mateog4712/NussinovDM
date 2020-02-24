@@ -30,7 +30,7 @@ void printTable(auto T){
 
 }
 
-void nussinovOpt(string sequence){
+void nussinovOpt2(string sequence){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
@@ -100,31 +100,31 @@ uint16_t energy = table[0][len-1];
 // This will traceback through the table defined in nussinov
 string tracebackOpt(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, string sequence){
 
-	if(i>j)
-	{
-		return "";
-	}
+if(i>j)
+{
+	return "";
+}
 
-	if(table[i+1][j-1] + 1 == table[i][j] and match(sequence,i,j))
-	{
+if(table[i+1][j-1] + 1 == table[i][j] and match(sequence,i,j))
+{
 
-	return "(" + tracebackOpt(table,i+1,j-1,sequence) + ")";
-	}
-	else if(table[i+1][j] == table[i][j])
-	{
-		return "." + tracebackOpt(table,i+1,j,sequence);
-	}
-	else if(table[i][j-1] == table[i][j])
-	{
-		return tracebackOpt(table,i,j-1,sequence) + ".";
-	}
-	else{
+return "(" + tracebackOpt(table,i+1,j-1,sequence) + ")";
+}
+else if(table[i+1][j] == table[i][j])
+{
+	return "." + tracebackOpt(table,i+1,j,sequence);
+}
+else if(table[i][j-1] == table[i][j])
+{
+	return tracebackOpt(table,i,j-1,sequence) + ".";
+}
+else{
 
-		for(uint16_t k = i+1; k<j;k++){
+	for(uint16_t k = i+1; k<j;k++){
 
-			if(table[i][k] + table[k+1][j] == table[i][j]){
-			return tracebackOpt(table,i,k,sequence) + tracebackOpt(table,k+1,j,sequence);		
-			}
+		if(table[i][k] + table[k+1][j] == table[i][j]){
+		return tracebackOpt(table,i,k,sequence) + tracebackOpt(table,k+1,j,sequence);		
 		}
 	}
+}
 }

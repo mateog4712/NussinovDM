@@ -37,7 +37,7 @@ void nussinov3(string sequence){
 			{
 				uint16_t m1 = table[i][j-1];
 				uint16_t m2 = table[i+1][j];
-				auto mB = match3(sequence,i,j);
+				auto mb = match2(sequence,i,j);
 				uint16_t m3 = table[i+1][j-1] * mB + mB*mB;
 				uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j;k++)
@@ -74,27 +74,26 @@ string traceback3(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, st
 		return "";
 	}
 
-	if(table[i+1][j-1] + 1 == table[i][j] and match3(sequence,i,j))
+	if(table[i+1][j-1] + 1 == table[i][j] and match(sequence,i,j))
 	{
 
-	return "(" + traceback3(table,i+1,j-1,sequence) + ")";
+	return "(" + tracebackOpt(table,i+1,j-1,sequence) + ")";
 	}
 	else if(table[i+1][j] == table[i][j])
 	{
-		return "." + traceback3(table,i+1,j,sequence);
+		return "." + tracebackOpt(table,i+1,j,sequence);
 	}
 	else if(table[i][j-1] == table[i][j])
 	{
-		return traceback3(table,i,j-1,sequence) + ".";
+		return tracebackOpt(table,i,j-1,sequence) + ".";
 	}
 	else{
 
 		for(uint16_t k = i+1; k<j;k++){
 
 			if(table[i][k] + table[k+1][j] == table[i][j]){
-			return traceback3(table,i,k,sequence) + traceback3(table,k+1,j,sequence);		
+			return tracebackOpt(table,i,k,sequence) + tracebackOpt(table,k+1,j,sequence);		
 			}
 		}
 	}
-	return "";
 }
