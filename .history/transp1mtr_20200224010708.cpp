@@ -90,7 +90,7 @@ string traceback5(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, st
         return "";
     }
 
-    if(table[i+1][j-1] + 1 == table[i][j] and match5(sequence,i,j))
+    if(table[i+1][j-1] + 1 == table[i][j] and match4(sequence,i,j))
     {
 
     return "(" + traceback5(table,i+1,j-1,sequence) + ")";
