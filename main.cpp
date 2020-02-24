@@ -9,29 +9,37 @@
 
 using namespace std;
 int main() {
-	string seq = "AGGACC";
-	//nussinov(seq);
+	int numofIter = 5;
+	double avg = 0.0;
+	for (int j=0;j<5;j++)
+	{
 
-	auto start = chrono::steady_clock::now();
-	for(auto i=0;i<testData.size();i++){
+		auto start = chrono::steady_clock::now();
+		for(auto i=0;i<testData.size();i++){
 
-		// nussinov(testData[i]);
-		nussinovOpt(testData[i]);
+			// nussinov(testData[i]);
+			nussinovOpt2(testData[i]);
 
-	}
-	auto end = chrono::steady_clock::now();
+		}
+		auto end = chrono::steady_clock::now();
 
-	cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
-	start = chrono::steady_clock::now();
-	for(auto i=0;i<testData.size();i++){
-
-		// nussinov(testData[i]);
-		nussinovOpt2(testData[i]);
 		
-	}
-	end = chrono::steady_clock::now();
 
-	cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
+		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+	}
+	avg = avg / numofIter;
+	cout << "Average elapsed time: " << avg << endl;
+
+	// start = chrono::steady_clock::now();
+	// for(auto i=0;i<testData.size();i++){
+
+	// 	// nussinov(testData[i]);
+	// 	nussinovOpt2(testData[i]);
+		
+	// }
+	// end = chrono::steady_clock::now();
+
+	// cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
 
 	
 	return 0;
