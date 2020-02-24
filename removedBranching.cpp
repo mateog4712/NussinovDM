@@ -23,7 +23,7 @@ void nussinov3(string sequence){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
-	cout<< "Length: "<< len << endl;
+	// cout<< "Length: "<< len << endl;
 
 	//first we initialize the matrics D
 	vector< vector<uint16_t> > table(len,vector<uint16_t>(len));
@@ -53,8 +53,8 @@ void nussinov3(string sequence){
 		} 
 	}
 
-	string structure = "";
-	uint16_t energy = table[0][len-1];
+	// string structure = "";
+	// uint16_t energy = table[0][len-1];
 
 	// structure = traceback(table, 0, len-1, sequence);
 
