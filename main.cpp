@@ -15,6 +15,7 @@
 
 using namespace std;
 int main() {
+	int main() {
 	srand(time(0));
 	int numofIter = 5;
 	double avg = 0.0;
@@ -39,17 +40,6 @@ int main() {
 	}
 	avg = avg / numofIter;
 	cout << "Average elapsed time: " << avg << endl;
-
-	// start = chrono::steady_clock::now();
-	// for(auto i=0;i<testData.size();i++){
-
-	// 	// nussinov(testData[i]);
-	// 	nussinovOpt2(testData[i]);
-		
-	// }
-	// end = chrono::steady_clock::now();
-
-	// cout << "elapsed time:" << chrono::duration_cast<chrono::seconds>(end-start).count() << endl;
 
 	
 	return 0;

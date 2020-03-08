@@ -7,6 +7,7 @@ using namespace std;
 
 
 
+
 /** This creates the data that is run by our functions. The minimum size for the data is 30	**/
 void createData(vector<string> &testData, int NOS, int maxSize){
 
@@ -31,3 +32,4 @@ void createData(vector<string> &testData, int NOS, int maxSize){
 	testData.push_back(sequence);
 	}
 }
+

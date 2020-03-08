@@ -16,8 +16,14 @@ bool match(string &sequence,uint16_t i,uint16_t j)
 	return 0;
 }
 
-void printTable(auto T){
+void printTable(vector< vector<uint16_t> > T, string s){
+	cout << "  ";
+	for (auto i =0; i<s.size(); i++){
+		cout << s[i] << " " ;
+	}
+	cout << endl;
 	for(uint16_t i=0;i<T.size();i++){
+		cout << s[i] << " ";
 		for(uint16_t j=0;j<T.size();j++){
 
 			cout << T[i][j] << " ";
@@ -73,7 +79,7 @@ void nussinov(string sequence){
 	}
 
 //cout<<endl;
-//printTable(table);
+// printTable(table);
 
  string structure = "";
  uint16_t energy = table[0][len-1];
