@@ -9,28 +9,8 @@
 
 using namespace std;
 
-bool matchOpt(string &sequence,uint16_t i,uint16_t j)
-{
-	if ( ((sequence[i] == 'A' and sequence[j] == 'U' ) or (sequence[i] == 'G' and sequence[j] == 'C' )) and j-i>3)
-		return 1;
 
-	return 0;
-}
-
-void printTable(auto T){
-	for(uint16_t i=0;i<T.size();i++){
-		for(uint16_t j=0;j<T.size();j++){
-
-			cout << T[i][j] << " ";
-		}
-		cout<<endl;
-
-	}
-
-
-}
-
-void nussinovOpt(string sequence){
+void nussinovVar(string sequence){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
@@ -48,7 +28,7 @@ void nussinovOpt(string sequence){
 			if (i<j)
 			{
 
-				auto mB = matchOpt(sequence,i,j);
+				auto mB = match(sequence,i,j);
 				uint16_t m3 = 0;
 				
 				// m3 = table[i+1][j-1] * mB + mB*mB;
@@ -82,49 +62,17 @@ void nussinovOpt(string sequence){
 	}
 
 
-//aprintTable(table);
+//printTable(table);
 //cout<<endl;
 //printTable(tableT);
 
-// string structure = "";
-// uint16_t energy = table[0][len-1];
+ string structure = "";
+ uint16_t energy = table[0][len-1];
 
-// structure = tracebackOpt(table, 0, len-1, sequence);
+ structure = traceback(table, 0, len-1, sequence);
 
 // cout << sequence << endl;
 // cout << structure << endl;
-// cout << energy << endl;
+cout << energy << endl;
 
-}
-
-// This will traceback through the table defined in nussinov
-string tracebackOpt(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, string sequence){
-
-	if(i>j)
-	{
-		return "";
-	}
-
-	if(table[i+1][j-1] + 1 == table[i][j] and match(sequence,i,j))
-	{
-
-	return "(" + tracebackOpt(table,i+1,j-1,sequence) + ")";
-	}
-	else if(table[i+1][j] == table[i][j])
-	{
-		return "." + tracebackOpt(table,i+1,j,sequence);
-	}
-	else if(table[i][j-1] == table[i][j])
-	{
-		return tracebackOpt(table,i,j-1,sequence) + ".";
-	}
-	else{
-
-		for(uint16_t k = i+1; k<j;k++){
-
-			if(table[i][k] + table[k+1][j] == table[i][j]){
-			return tracebackOpt(table,i,k,sequence) + tracebackOpt(table,k+1,j,sequence);		
-			}
-		}
-	}
 }

@@ -9,17 +9,10 @@
 
 using namespace std;
 
-bool match4(string &sequence,uint16_t i,uint16_t j)
-{
-	if ( ((sequence[i] == 'A' and sequence[j] == 'U' ) or (sequence[i] == 'G' and sequence[j] == 'C' )) and j-i>3)
-		return 1;
-
-	return 0;
-}
 
 
 
-void nussinov4(string sequence){
+void nussinovDouble(string sequence){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
@@ -40,7 +33,7 @@ void nussinov4(string sequence){
 				uint16_t m2 = table[i+1][j];
 
 
-				auto mB = match4(sequence,i,j);
+				auto mB = match(sequence,i,j);
 				uint16_t m3 = 0;
 				
 				if(mB)
@@ -70,47 +63,13 @@ void nussinov4(string sequence){
 	//cout<<endl;
 	//printTable(tableT);
 
-	// string structure = "";
-	// uint16_t energy = table[0][len-1];
+	string structure = "";
+	uint16_t energy = table[0][len-1];
 
-	// structure = tracebackOpt(table, 0, len-1, sequence);
+	 structure = traceback(table, 0, len-1, sequence);
 
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	// cout << energy << endl;
+	cout << energy << endl;
 
-}
-
-
-
-// This will traceback through the table defined in nussinov
-string traceback4(vector< vector<uint16_t> > & table, uint16_t i, uint16_t j, string sequence){
-
-    if(i>j)
-    {
-        return "";
-    }
-
-    if(table[i+1][j-1] + 1 == table[i][j] and match4(sequence,i,j))
-    {
-
-    return "(" + traceback4(table,i+1,j-1,sequence) + ")";
-    }
-    else if(table[i+1][j] == table[i][j])
-    {
-        return "." + traceback4(table,i+1,j,sequence);
-    }
-    else if(table[i][j-1] == table[i][j])
-    {
-        return traceback4(table,i,j-1,sequence) + ".";
-    }
-    else{
-
-        for(uint16_t k = i+1; k<j;k++){
-
-            if(table[i][k] + table[k+1][j] == table[i][j]){
-            return traceback4(table,i,k,sequence) + traceback4(table,k+1,j,sequence);		
-            }
-        }
-    }
 }

@@ -8,7 +8,7 @@
 #include "optimized.hpp"
 #include "bottomUp.hpp"
 #include "removedBranching.hpp"
-#include "transp1mtr.hpp"
+#include "variation.hpp"
 #include "transp2mtr.hpp"
 
 using namespace std;
@@ -22,7 +22,7 @@ int main() {
 		for(auto i=0;i<testData.size();i++){
 
 			// nussinov(testData[i]);
-			nussinov5(testData[i]);
+			nussinovVar(testData[i]);
 
 		}
 		auto end = chrono::steady_clock::now();

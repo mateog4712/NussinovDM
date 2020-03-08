@@ -5,11 +5,9 @@
 
 
 
-bool match2(std::string &sequence,uint16_t i,uint16_t j);
+void nussinovBottom(std::string sequence);
 
-void nussinov2(std::string sequence);
 
-std::string traceback2(std::vector< std::vector<uint16_t> > &table, uint16_t i, uint16_t j, std::string sequence);
 
 
 
