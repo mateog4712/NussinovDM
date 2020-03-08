@@ -40,8 +40,8 @@ void nussinovBottom(string sequence){
 					if (table[i][k] + table[k+1][j] > m4)
 						m4 = table[i][k] + table[k+1][j];
 				}
-					//cout << m1 << " " << m2 << " " << m3 << " " << m4 << endl;
-					table[i][j] = max(m1,max(m2,max(m3,m4)));
+				// cout << m1 << " " << m2 << " " << m3 << " " << m4 << endl;
+				table[i][j] = max(m1,max(m2,max(m3,m4)));
 			}
 		}
 		if(i==0)
@@ -51,7 +51,7 @@ void nussinovBottom(string sequence){
 	}
 
 	//cout<<endl;
-	//printTable(table);
+	printTable(table,sequence);
 
 	string structure = "";
 	uint16_t energy = table[0][len-1];

@@ -28,11 +28,12 @@ void nussinovBranch(string sequence){
 				uint16_t m1 = table[i][j-1];
 				uint16_t m2 = table[i+1][j];
 				auto mB = match(sequence,i,j);
-				uint16_t m3 = table[i+1][j-1] * mB + mB*mB;
+				uint16_t m3 = mB*(table[i+1][j-1] + mB);
 				uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j;k++)
 				{
-					m4 = (table[i][k] + table[k+1][j] > m4) * (table[i][k] + table[k+1][j]);
+					mB = ( (table[i][k] + table[k+1][j] ) > m4);
+					m4 = max(m4, uint16_t(mB * (table[i][k] + table[k+1][j])) );
 				}
 				table[i][j] = max(m1,max(m2,max(m3,m4)));
 			}
@@ -42,14 +43,14 @@ void nussinovBranch(string sequence){
 			break;
 		} 
 	}
+	printTable(table, sequence);
+	string structure = "";
+	uint16_t energy = table[0][len-1];
 
-	 string structure = "";
-	 uint16_t energy = table[0][len-1];
-
-	 structure = traceback(table, 0, len-1, sequence);
+	structure = traceback(table, 0, len-1, sequence);
 
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	 cout << energy << endl;
+	cout << energy << endl;
 
 }

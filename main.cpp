@@ -22,7 +22,12 @@ int main() {
 		for(auto i=0;i<testData.size();i++){
 
 			// nussinov(testData[i]);
-			nussinovVar(testData[i]);
+			cout << "---- bottoms" << endl;
+			nussinovBottom(testData[i]);
+			cout << "---- branch" << endl;
+			nussinovBranch(testData[i]);
+			cout << "---- opt" << endl;
+			nussinovOpt(testData[i]);
 
 		}
 		auto end = chrono::steady_clock::now();
