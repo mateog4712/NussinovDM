@@ -1,17 +1,15 @@
-#ifndef OPTIMIZED
-#define OPTIMIZED
+#ifndef TRANSP2MTR
+#define TRANSP2MTR
 #include <vector>
 #include <string>
 
 
-bool matchOpt(std::string &sequence,uint16_t i,uint16_t j);
+bool match5(std::string &sequence,uint16_t i,uint16_t j);
 
-void nussinovOpt(std::string sequence);
+void nussinov5(std::string sequence);
 
 
-std::string tracebackOpt(std::vector< std::vector<uint16_t> > &table, uint16_t i, uint16_t j, std::string sequence);
-
-void printTable(auto T);
+std::string traceback5(std::vector< std::vector<uint16_t> > &table, uint16_t i, uint16_t j, std::string sequence);
 
 
 #endif

@@ -22,7 +22,7 @@ int main() {
 		for(auto i=0;i<testData.size();i++){
 
 			// nussinov(testData[i]);
-			nussinov2(testData[i]);
+			nussinov5(testData[i]);
 
 		}
 		auto end = chrono::steady_clock::now();
