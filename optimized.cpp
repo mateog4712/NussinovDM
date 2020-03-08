@@ -53,17 +53,10 @@ void nussinovOpt(string sequence){
 		    break;
 		} 
 	}
-
-
-	//aprintTable(table);
-	//cout<<endl;
-	//printTable(tableT);
-
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 
 	 structure = traceback(table, 0, len-1, sequence);
-
 	// cout << sequence << endl;
 	// cout << structure << endl;
 	 cout << energy << endl;
