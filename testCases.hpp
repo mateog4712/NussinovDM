@@ -5,7 +5,9 @@
 
 
 
-extern std::vector<std::string> testData;
+char getBase(int i);
+
+void createData(std::vector<std::string> &testData, int NOS, int maxSize);
 
 
 #endif
