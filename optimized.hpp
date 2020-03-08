@@ -1,5 +1,5 @@
-#ifndef TRANSP2MTR
-#define TRANSP2MTR
+#ifndef OPTIMIZED
+#define OPTIMIZED
 #include <vector>
 #include <string>
 

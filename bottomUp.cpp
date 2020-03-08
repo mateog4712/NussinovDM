@@ -1,4 +1,4 @@
-#include "baseline.hpp"
+#include "bottomUp.hpp"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -59,14 +59,14 @@ void nussinov2(string sequence){
 	//cout<<endl;
 	//printTable(table);
 
-	// string structure = "";
-	// uint16_t energy = table[0][len-1];
+	string structure = "";
+	uint16_t energy = table[0][len-1];
 
-	// structure = traceback(table, 0, len-1, sequence);
+	structure = traceback(table, 0, len-1, sequence);
 
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	// cout << energy << endl;
+	 cout << energy << endl;
 
 }
 

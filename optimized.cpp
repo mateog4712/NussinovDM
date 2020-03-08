@@ -69,14 +69,14 @@ void nussinov5(string sequence){
 	//cout<<endl;
 	//printTable(tableT);
 
-	// string structure = "";
-	// uint16_t energy = table[0][len-1];
+	string structure = "";
+	uint16_t energy = table[0][len-1];
 
-	// structure = tracebackOpt(table, 0, len-1, sequence);
+	 structure = traceback5(table, 0, len-1, sequence);
 
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	// cout << energy << endl;
+	 cout << energy << endl;
 
 }
 

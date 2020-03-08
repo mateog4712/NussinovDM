@@ -1,5 +1,5 @@
-#ifndef OPTIMIZED
-#define OPTIMIZED
+#ifndef VARIATION
+#define VARIATION
 #include <vector>
 #include <string>
 
