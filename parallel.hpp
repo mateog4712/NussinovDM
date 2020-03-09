@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-void nussinovPar(std::string sequence);
+void nussinovPar(std::string sequence, int threads);
 
 
 #endif

@@ -59,6 +59,6 @@ void nussinovOpt(string sequence){
 	 structure = traceback(table, 0, len-1, sequence);
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	 cout << energy << endl;
+	 //cout << energy << endl;
 
 }

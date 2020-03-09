@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void nussinovPar(string sequence){
+void nussinovPar(string sequence, int threads){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
@@ -23,6 +23,7 @@ void nussinovPar(string sequence){
 	for (uint16_t j =1;j<len;j++)
 	{
 		auto j0 =j;
+		#pragma omp parallel for num_threads(threads);
 		for(uint16_t i=0;i<len - j0;i++)
 		{
 			if (i<j)
@@ -57,6 +58,6 @@ structure = traceback(table, 0, len-1, sequence);
 
 // cout << sequence << endl;
 // cout << structure << endl;
- cout << energy << endl;
+ //cout << energy << endl;
 
 }

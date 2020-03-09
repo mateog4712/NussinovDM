@@ -12,22 +12,23 @@
 #include "variation.hpp"
 #include "transp2mtr.hpp"
 #include <ctime>
+#include "parallel.hpp"
 
 using namespace std;
 int main() {
-	int main() {
+	/** Definition of Variables and creation of data **/
 	srand(time(0));
-	int numofIter = 5;
+	int numofIter = 1;
 	double avg = 0.0;
 	vector<string> testData;
-	createData(testData,3, 600);
-	for (int j=0;j<2;j++)
+	createData(testData,8, 2000);
+
+	/** The functions are run **/
+	for (int j=0;j<numofIter;j++)
 	{
-		
 		auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
 
-			
 			nussinovOpt(testData[i]);
 
 		}
@@ -36,11 +37,49 @@ int main() {
 		
 
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-		cout << endl;
 	}
 	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
 
+	cout << "Average elapsed time: " << avg << endl;
+	avg = 0;
+	for (int j=0;j<numofIter;j++)
+	{
+		
+		auto start = chrono::steady_clock::now();
+		for(auto i=0;i<testData.size();i++){
+
+			nussinov(testData[i]);
+
+		}
+		auto end = chrono::steady_clock::now();
+
+		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+		cout << endl;
+	}
+
+
+	avg = avg / numofIter;
+	cout << "Average elapsed time: " << avg << endl;
+	avg = 0;
+
+	for (int j=0;j<numofIter;j++)
+	{
+		
+		auto start = chrono::steady_clock::now();
+		for(auto i=0;i<testData.size();i++){
+
+			nussinovPar(testData[i], 1);
+
+		}
+		auto end = chrono::steady_clock::now();
+
+		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+		cout << endl;
+	}
+
+
+	avg = avg / numofIter;
+	cout << "Average elapsed time: " << avg << endl;
 	
 	return 0;
 }
