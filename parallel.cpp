@@ -39,9 +39,11 @@ void nussinovPar(string sequence, int threads){
 				for (uint16_t k = i+1;k<j;k++)
 				{
 					if (table[i][k] + table[k+1][j] > m4)
-						m4 = table[i][k] + table[k+1][j];
+						m4 = table[i][k] + table[j][k+1];
 				}
-				table[i][j] = max(m1,max(m2,max(m3,m4)));
+				uint16_t ins = max(m1,max(m2,max(m3,m4)));
+				table[i][j] = ins;
+				table[j][i] = ins;
 			}
 			j++;
 		}
