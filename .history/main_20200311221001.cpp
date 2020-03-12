@@ -89,8 +89,8 @@ int main() {
 		
 		auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
-			cout << testData[i].size() << endl;
-			nussinovRecursion(testData[i], 0, testData[i].size() - 1, 0);
+			cout << 
+			// nussinovRecursion(testData[i], 1);
 
 		}
 		auto end = chrono::steady_clock::now();

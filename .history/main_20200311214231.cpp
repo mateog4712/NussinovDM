@@ -22,7 +22,7 @@ int main() {
 	int numofIter = 1;
 	double avg = 0.0;
 	vector<string> testData;
-	createData(testData,1, 10);
+	createData(testData,5, 2000);
 
 	/** The functions are run **/
 	for (int j=0;j<numofIter;j++)
@@ -83,14 +83,14 @@ int main() {
 	cout << "Average elapsed time: " << avg << endl;
 
 	avg = 0;
-	cout << "Recursion: "  << endl;
+
 	for (int j=0;j<numofIter;j++)
 	{
 		
 		auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
-			cout << testData[i].size() << endl;
-			nussinovRecursion(testData[i], 0, testData[i].size() - 1, 0);
+
+			nussinovRecursion(testData[i], 1);
 
 		}
 		auto end = chrono::steady_clock::now();
