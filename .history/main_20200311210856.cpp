@@ -21,7 +21,7 @@ int main() {
 	int numofIter = 1;
 	double avg = 0.0;
 	vector<string> testData;
-	createData(testData,5, 2000);
+	createData(testData,2, 1000);
 
 	/** The functions are run **/
 	for (int j=0;j<numofIter;j++)
