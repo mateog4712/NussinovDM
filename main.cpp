@@ -14,6 +14,7 @@
 #include <ctime>
 #include "parallel.hpp"
 #include "recursion.hpp"
+#include "simd.hpp"
 
 using namespace std;
 int main() {
@@ -61,48 +62,5 @@ int main() {
 
 	avg = avg / numofIter;
 	cout << "Average elapsed time: " << avg << endl;
-	avg = 0;
-
-	for (int j=0;j<numofIter;j++)
-	{
-		
-		auto start = chrono::steady_clock::now();
-		for(auto i=0;i<testData.size();i++){
-
-			nussinovPar(testData[i], 1);
-
-		}
-		auto end = chrono::steady_clock::now();
-
-		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-		cout << endl;
-	}
-
-
-	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
-
-	avg = 0;
-	cout << "Recursion: "  << endl;
-	for (int j=0;j<numofIter;j++)
-	{
-		
-		auto start = chrono::steady_clock::now();
-		for(auto i=0;i<testData.size();i++){
-			cout << testData[i].size() << endl;
-			nussinovRecursion(testData[i], 0, testData[i].size() - 1, 0);
-
-		}
-		auto end = chrono::steady_clock::now();
-
-		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-		cout << endl;
-	}
-
-
-	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
-	
-	
 	return 0;
 }

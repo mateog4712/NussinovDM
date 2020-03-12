@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-g++ -o0 -std=c++17 baseline.cpp bottomUp.cpp main.cpp optimized.cpp parallel.cpp  removedBranching.cpp transp2mtr.cpp variation.cpp recursion.cpp -o prog
+g++ -o0 -std=c++17 baseline.cpp bottomUp.cpp main.cpp optimized.cpp parallel.cpp  removedBranching.cpp transp2mtr.cpp variation.cpp recursion.cpp simd.cpp -o prog
 ./prog
