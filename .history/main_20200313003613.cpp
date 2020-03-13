@@ -23,7 +23,7 @@ int main() {
 	//srand(time(0));
 	int numofIter = 1;
 	double avg = 0.0;
-	vector<string> testData = {s0};
+	vector<string> testData = {s1};
 	cout << "Creating data..." << endl;
 	// createData(testData,1, 10);
 	

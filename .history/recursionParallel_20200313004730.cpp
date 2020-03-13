@@ -33,24 +33,28 @@ uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
             }
         }
         
-        uint16_t m1 = 0;
+        //uint16_t m1 = 0;
+    
 
+
+        
         #pragma omp task
         {
             uint16_t m1 = nussinovRecursion(sequence,i,j-1);
         }
         
-        uint16_t m2 = 0;
+        
         #pragma omp task
         {
             uint16_t m2 = nussinovRecursion(sequence,i+1,j);
         }
         
+        //uint16_t m2 = 0;
+        
         uint16_t m4 = 0;
         for (int k = i+1; k < j;k++) 
         {
-            uint16_t n1 = 0;
-            uint16_t n2 = 0;
+            // uint16_t temp = 0;
             #pragma omp task 
             {
                 auto n1 = nussinovRecursion(sequence,i,k);

@@ -38,6 +38,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
@@ -53,6 +56,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;

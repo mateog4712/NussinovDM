@@ -21,9 +21,9 @@ using namespace std;
 int main() {
 	/** Definition of Variables and creation of data **/
 	//srand(time(0));
-	int numofIter = 1;
+	int numofIter = 5;
 	double avg = 0.0;
-	vector<string> testData = {s0};
+	vector<string> testData = {s1};
 	cout << "Creating data..." << endl;
 	// createData(testData,1, 10);
 	
@@ -38,6 +38,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
@@ -53,6 +56,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;

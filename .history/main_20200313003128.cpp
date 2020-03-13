@@ -21,13 +21,13 @@ using namespace std;
 int main() {
 	/** Definition of Variables and creation of data **/
 	//srand(time(0));
-	int numofIter = 1;
+	int numofIter = 5;
 	double avg = 0.0;
-	vector<string> testData = {s0};
-	cout << "Creating data..." << endl;
+	vector<string> testData = {s1,s2};
+	cout << "Creating data...";
 	// createData(testData,1, 10);
 	
-	cout << "Calculating Nussinov..." << endl;
+	cout << "Calculating Nussinov...";
 	/** The functions are run **/
 	for (int j=0;j<numofIter;j++)
 	{
@@ -38,6 +38,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
@@ -53,6 +56,9 @@ int main() {
 
 		}
 		auto end = chrono::steady_clock::now();
+
+		
+
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
