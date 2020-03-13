@@ -23,8 +23,7 @@ int main() {
 	int numofIter = 1;
 	double avg = 0.0;
 	vector<string> testData;
-	createData(testData,1, 10);
-
+	createData(testData,1, 32);
 	/** The functions are run **/
 	for (int j=0;j<numofIter;j++)
 	{
@@ -50,7 +49,7 @@ int main() {
 		auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
 
-			nussinov(testData[i]);
+			nussinovRecursion(testData[i],0,testData[i].length(),0);
 
 		}
 		auto end = chrono::steady_clock::now();

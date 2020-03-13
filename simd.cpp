@@ -6,7 +6,11 @@
 #include <iostream>
 #include <utility>
 #include "nmmintrin.h" // for SSE4.2
-#include "immintrin.h" // for AVX
+#include <immintrin.h> // for AVX
+#include <emmintrin.h>
+#include "tmmintrin.h"
+//#include "avx512vlbwintrin.h"
+
 
 
 using namespace std;
@@ -15,12 +19,9 @@ void nussinovSimd(string sequence){
 
 	//take len of the sequence for further use
 	uint16_t len = sequence.length();
-    __m256 row1;
-    __m256 row2;
-	
-
 	//first we initialize the matrics D
-	vector< vector<uint16_t> > table(len,vector<uint16_t>(len));
+	vector< vector<uint16_t> > table(len+16,vector<uint16_t>(len+16));
+	
 	
 	
 	for (uint16_t i =len-1;i>=0;i--)
@@ -42,9 +43,10 @@ void nussinovSimd(string sequence){
 				uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j;k+=8)
 				{
-                    row1 = _mm_load_ps(table[i][k],table[i][k+1],table[i][k+2],table[i][k+3],table[i][k+4], table[i][k+5], table[i][k+6], table[i][k+7]);
-
-
+					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
+					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k] );
+					__m128i result_values = _mm_add_epi16(row1,row2);
+					//__m128i max = 
 					if (table[i][k] + table[j][k+1] > m4)
 						m4 = table[i][k] + table[j][k+1];
 				}
