@@ -1,4 +1,4 @@
-#include "optimized.hpp"
+#include "simd.hpp"
 #include "baseline.hpp"
 #include <vector>
 #include <string>
@@ -18,45 +18,48 @@ using namespace std;
 void nussinovSimd(string sequence){
 
 	//take len of the sequence for further use
-	uint16_t len = sequence.length();
+	int len = sequence.length();
 	//first we initialize the matrics D
-	vector< vector<uint16_t> > table(len+16,vector<uint16_t>(len+16));
+	vector< vector<int> > table(len+16,vector<int>(len+16));
 	
 	
 	
-	for (uint16_t i =len-1;i>=0;i--)
+	for (int i =len-1;i>=0;i--)
 	{
-		for(uint16_t j=i;j<len;j++)
+		for(int j=i;j<len;j++)
 		{
 			if (i<j)
 			{
-				uint16_t m1 = table[i][j-1];
-				uint16_t m2 = table[i+1][j];
+				int m1 = table[i][j-1];
+				int m2 = table[i+1][j];
 
 
 				auto mB = match(sequence,i,j);
-				uint16_t m3 = 0;
+				int m3 = 0;
 				
-				if(mB)
+				if(mB!=0)
 					m3 = table[i+1][j-1] + mB;
 				
-				uint16_t m4 = 0;
-				for (uint16_t k = i+1;k<j;k+=8)
+				int m4 = 0;
+				for (int k = i+1;k<j;k+=8)
 				{
 					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
 					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
+					
+					vector<uint16_t> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
 					for(int m=0;m<8;m++){ 
-
-						
-						uint16_t value = _mm_extract_epi16(result_values,0);
+						//union { __m128i result_values; int16_t i16[8]; };
+						int value = results[m];
+						//int value = _mm_extract_epi16(result_values,7);
+						//cout<< value<<endl;
 						if ( value > m4)
 							m4 = value; 
 					}				
 				}
 
-				
-				uint16_t ins = max(m1,max(m2,max(m3,m4)));
+				cout << m1 << " " << m2 << " " << m3 << " " << m4 << " " << endl;
+				int ins = max(m1,max(m2,max(m3,m4)));
 				table[i][j] = ins;
 				table[j][i] = ins;
 
@@ -68,6 +71,27 @@ void nussinovSimd(string sequence){
 		} 
 	}
 	string structure = "";
-	uint16_t energy = table[0][len-1];
-	structure = traceback(table, 0, len-1, sequence);
+	int energy = table[0][len-1];
+	//structure = traceback(table, 0, len-1, sequence);
+	cout << energy << endl;
+	//printTableI(table,sequence);
+}
+
+void printTableI(vector< vector<int> > T, string s){
+	cout << "  ";
+	for (auto i =0; i<s.size(); i++){
+		cout << s[i] << " " ;
+	}
+	cout << endl;
+	for(uint16_t i=0;i<T.size();i++){
+		cout << s[i] << " ";
+		for(uint16_t j=0;j<T.size();j++){
+
+			cout << T[i][j] << " ";
+		}
+		cout<<endl;
+
+	}
+
+
 }
