@@ -46,10 +46,15 @@ void nussinovSimd(string sequence){
 					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
 					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
-					//__m128i max = 
-					if (table[i][k] + table[j][k+1] > m4)
-						m4 = table[i][k] + table[j][k+1];
+					for(int m=0;m<8;m++){ 
+
+						
+						uint16_t value = _mm_extract_epi16(result_values,0);
+						if ( value > m4)
+							m4 = value; 
+					}				
 				}
+
 				
 				uint16_t ins = max(m1,max(m2,max(m3,m4)));
 				table[i][j] = ins;

@@ -4,7 +4,7 @@
 #include <string>
 
 
-
+extern std::vector<std::string> testData;
 
 void createData(std::vector<std::string> &testData, int NOS, int maxSize);
 
