@@ -1,7 +1,6 @@
 
 #include "baseline.hpp"
 #include "recursionParallel.hpp"
-#include "recursion.hpp"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -11,7 +10,7 @@
 
 using namespace std;
 
-uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
+uint16_t nussinovRecursionParallelActual(std::string & sequence, int i, int j)
 {
     
     if(j <= i) 
@@ -31,7 +30,7 @@ uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
 
             if (mB !=0) {
             // cout << i << " " << j  <<endl;
-                m3 = nussinovRecursionParallel(sequence,i+1,j-1) + mB;
+                m3 = nussinovRecursion(sequence,i+1,j-1) + mB;
             }
         }
         
@@ -39,13 +38,13 @@ uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
 
         #pragma omp task
         {
-            uint16_t m1 = nussinovRecursionParallel(sequence,i,j-1);
+            uint16_t m1 = nussinovRecursion(sequence,i,j-1);
         }
         
         uint16_t m2 = 0;
         #pragma omp task
         {
-            uint16_t m2 = nussinovRecursionParallel(sequence,i+1,j);
+            uint16_t m2 = nussinovRecursion(sequence,i+1,j);
         }
         
         uint16_t m4 = 0;
@@ -55,12 +54,12 @@ uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
             uint16_t n2 = 0;
             #pragma omp task 
             {
-                auto n1 = nussinovRecursionParallel(sequence,i,k);
+                auto n1 = nussinovRecursion(sequence,i,k);
             }
             
             #pragma omp task
             {
-                auto n2 = nussinovRecursionParallel(sequence,k+1,j);
+                auto n2 = nussinovRecursion(sequence,k+1,j);
             }
             
             uint16_t temp = n1+ n2;

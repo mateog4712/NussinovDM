@@ -1,10 +1,11 @@
-#include "optimized.hpp"
+#include "optPar.hpp"
 #include "baseline.hpp"
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <iostream>
 #include <utility>
+#include <omp.h>
 
 
 using namespace std;
@@ -18,7 +19,11 @@ void nussinovOpt(string sequence){
 
 	//first we initialize the matrics D
 	vector< vector<uint16_t> > table(len,vector<uint16_t>(len));
-	
+	#pragma omp parallel
+    {
+    #pragma omp single 
+    
+    {
 	
 	for (uint16_t i =len-1;i>=0;i--)
 	{
@@ -26,6 +31,8 @@ void nussinovOpt(string sequence){
 		{
 			if (i<j)
 			{
+                #pragma omp task
+                {   
 				uint16_t m1 = table[i][j-1];
 				uint16_t m2 = table[i+1][j];
 
@@ -35,13 +42,16 @@ void nussinovOpt(string sequence){
 				
 				if(mB)
 					m3 = table[i+1][j-1] + mB;
-				
-				uint16_t m4 = 0;
+                }
+                #pragma omp task {
+                    uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j;k++)
 				{
 					if (table[i][k] + table[j][k+1] > m4)
 						m4 = table[i][k] + table[j][k+1];
 				}
+                }
+				
 				
 				uint16_t ins = max(m1,max(m2,max(m3,m4)));
 				table[i][j] = ins;
@@ -54,6 +64,8 @@ void nussinovOpt(string sequence){
 		    break;
 		} 
 	}
+    }
+    }
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 

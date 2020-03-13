@@ -24,7 +24,7 @@ int main() {
 	/** Definition of Variables and creation of data **/
 	//srand(time(0));
 	int numofIter = 1;
-	
+	double avg = 0.0;
 	vector<string> testData = {s0};
 	cout << "Creating data..." << endl;
 	// createData(testData,1, 10);
