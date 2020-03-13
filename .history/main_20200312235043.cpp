@@ -25,7 +25,7 @@ int main() {
 	//vector<string> testData;
 	//createData(testData,8, 2000);
 
-	cout << nussinovRecursion("AB",0,1,0):
+	nussinovRecursion("AB",0,1,0)
 	/** The functions are run **/
 	// for (int j=0;j<numofIter;j++)
 	// {

@@ -24,8 +24,6 @@ int main() {
 	double avg = 0.0;
 	//vector<string> testData;
 	//createData(testData,8, 2000);
-
-	cout << nussinovRecursion("AB",0,1,0):
 	/** The functions are run **/
 	// for (int j=0;j<numofIter;j++)
 	// {
@@ -44,10 +42,6 @@ int main() {
 	// avg = avg / numofIter;
 
 	// cout << "Average elapsed time: " << avg << endl;
-
-
-
-
 }
 // 	avg = 0;
 // 	for (int j=0;j<numofIter;j++)
