@@ -1,5 +1,5 @@
-#ifndef RECURSION
-#define RECURSION
+#ifndef RECURSIONPARALLEL
+#define RECURSIONPARALLEL
 #include <vector>
 #include <string>
 

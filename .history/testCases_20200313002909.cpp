@@ -35,7 +35,7 @@ void createData(vector<string> &testData, int NOS, int maxSize){
 
 	string sequence = "";
 	int treshold = 1;
-	int size = rand()%(maxSize-treshold) + treshold;
+	int size = rand()%(maxSize-30) + 30;
 
 		for(int j = 0; j<size;j++){
 

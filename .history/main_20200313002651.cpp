@@ -24,10 +24,9 @@ int main() {
 	int numofIter = 5;
 	double avg = 0.0;
 	//vector<string> testData;
-	cout << "Creating data...";
-	createData(testData,1, 10);
+	createData(testData,2, 100);
 	
-	cout << "Calculating Nussinov...";
+	
 	/** The functions are run **/
 	for (int j=0;j<numofIter;j++)
 	{

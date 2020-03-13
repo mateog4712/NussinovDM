@@ -19,7 +19,7 @@ uint16_t nussinovRecursion(std::string & sequence, int i, int j)
     bool mB = match(sequence,i,j);
 
     if (mB !=0) {
-        // cout << i << " " << j  <<endl;
+        cout << i << " " << j  <<endl;
         m3 = nussinovRecursion(sequence,i+1,j-1) + mB;
     }
     //uint16_t m1 = 0;

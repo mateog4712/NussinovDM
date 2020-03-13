@@ -5,10 +5,11 @@
 #include <algorithm>
 #include <iostream>
 #include <utility>
+#include <omp.h>
 
 using namespace std;
 
-uint16_t nussinovRecursion(std::string & sequence, int i, int j)
+uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
 {
     
     if(j <= i) 

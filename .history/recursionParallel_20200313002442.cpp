@@ -5,10 +5,11 @@
 #include <algorithm>
 #include <iostream>
 #include <utility>
+#include <omp.h>
 
 using namespace std;
 
-uint16_t nussinovRecursion(std::string & sequence, int i, int j)
+uint16_t nussinovRecursionParallel(std::string & sequence, int i, int j)
 {
     
     if(j <= i) 
@@ -16,6 +17,7 @@ uint16_t nussinovRecursion(std::string & sequence, int i, int j)
         return 0;
     }
     uint16_t m3 = 0;
+
     bool mB = match(sequence,i,j);
 
     if (mB !=0) {
@@ -23,7 +25,11 @@ uint16_t nussinovRecursion(std::string & sequence, int i, int j)
         m3 = nussinovRecursion(sequence,i+1,j-1) + mB;
     }
     //uint16_t m1 = 0;
+    #pragma omp parallel
+    #pragma omp single
     uint16_t m1 = nussinovRecursion(sequence,i,j-1);
+    #pragma omp parallel
+    #pragma omp single
     uint16_t m2 = nussinovRecursion(sequence,i+1,j);
     //uint16_t m2 = 0;
     

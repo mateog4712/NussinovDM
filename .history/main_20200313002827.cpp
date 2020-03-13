@@ -25,7 +25,7 @@ int main() {
 	double avg = 0.0;
 	//vector<string> testData;
 	cout << "Creating data...";
-	createData(testData,1, 10);
+	createData(testData,2, 31);
 	
 	cout << "Calculating Nussinov...";
 	/** The functions are run **/
