@@ -25,8 +25,8 @@ int main() {
 	//srand(time(0));
 	int numofIter = 1;
 	
-	vector<string> testData = {s0};
-	cout << "Creating data..." << endl;
+	//vector<string> testData = {s0};
+	//cout << "Creating data..." << endl;
 	// createData(testData,1, 10);
 	
 	cout << "Calculating Nussinov..." << endl;
@@ -44,6 +44,7 @@ int main() {
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
+	cout << "Average elapsed time: " << avg << endl;
 	cout << "Calculating Nussinov..." << endl;
 	/** The functions are run **/
 	avg = 0.0;
@@ -52,13 +53,14 @@ int main() {
 		auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
 
-			nussinovOptPar(testData[i]);
+			nussinovSimd(testData[i]);
 
 		}
 		auto end = chrono::steady_clock::now();
 		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
 	avg = avg / numofIter;
+	cout << "Average elapsed time: " << avg << endl;
 	
 }
 // 	avg = 0;

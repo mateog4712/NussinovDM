@@ -51,7 +51,7 @@ void nussinovOptPar(string sequence){
                 #pragma omp task
                 {
                     uint16_t m4 = 0;
-                    #pragma omp parallel for
+                    #pragma omp for
                     for (uint16_t k = i+1;k<j;k++)
                     {
                         if (table[i][k] + table[j][k+1] > m4)
