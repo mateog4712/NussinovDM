@@ -17,16 +17,17 @@ bool match(string &sequence,uint16_t i,uint16_t j)
 }
 
 void printTable(vector< vector<uint16_t> > T, string s){
-	cout << "  ";
+	cout << "\t";
+	s.resize(T.size(),'$');
 	for (auto i =0; i<s.size(); i++){
-		cout << s[i] << " " ;
+		cout << s[i] << "\t" ;
 	}
 	cout << endl;
 	for(uint16_t i=0;i<T.size();i++){
-		cout << s[i] << " ";
+		cout << s[i] << "\t";
 		for(uint16_t j=0;j<T.size();j++){
 
-			cout << T[i][j] << " ";
+			cout << T[i][j] << "\t";
 		}
 		cout<<endl;
 

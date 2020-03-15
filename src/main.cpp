@@ -24,7 +24,7 @@ int main() {
 	//srand(time(0));
 	int numofIter = 1;
 	
-	//vector<string> testData = {s0};
+	vector<string> testData = {"AAGGGGCC"};
 	//cout << "Creating data..." << endl;
 	// createData(testData,1, 10);
 	
