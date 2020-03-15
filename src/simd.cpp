@@ -42,27 +42,29 @@ void nussinovSimd(string sequence){
 				uint16_t m4 = 0;
 				for (uint16_t k = i+1;k<j+7;k+=8)
 				{
+					uint16_t n = k;
 					if(k+8> len){
-						uint16_t n = len-8;
-					__m128i const row1 = _mm_load_si128( (__m128i*) &table[i][n] );
-					__m128i const row2 = _mm_load_si128( (__m128i*) &table[j][n] );
+					n = len-8;
+					}
+					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][n] );
+					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][n] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
-					//__m128i max = _mm_minpos_epu16 (result_values);
+					__m128i min = _mm_minpos_epu16 (result_values);
 					//vector<int> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
 					//for(uint16_t m=0;m<8;m++){ 
 						//union { __m128i result_values; int16_t i16[8]; };
 						
 							//uint16_t value = results[m];
 						
-							//if ( _mm_extract_epi16(max,0) > m4){
-								//m4 = _mm_extract_epi16(max,0);
-							//} 
+							if ( _mm_extract_epi16(min,0) < m4){
+								m4 = _mm_extract_epi16(min,0);
+							} 
 					//}	
-					}			
+								
 				}
 
 				
-				uint16_t ins = max(m1,max(m2,max(m3,m4)));
+				uint16_t ins = min(m1,min(m2,min(m3,m4)));
 				table[i][j] = ins;
 				table[j][i] = ins;
 
@@ -75,30 +77,13 @@ void nussinovSimd(string sequence){
 	}
 	string structure = "";
 	uint16_t energy = table[0][len-1];
-	structure = traceback(table, 0, len-1, sequence);
+	structure = tracebackS(table, 0, len-1, sequence);
 	cout << var-energy << endl;
 	cout << structure << endl;
-	//printTableI(table,sequence);
+	printTable(table,sequence);
 }
 
-void printTableI(vector< vector<int> > T, string s){
-	cout << "  ";
-	for (auto i =0; i<s.size(); i++){
-		cout << s[i] << " " ;
-	}
-	cout << endl;
-	for(int i=0;i<T.size();i++){
-		cout << s[i] << " ";
-		for(int j=0;j<T.size();j++){
 
-			cout << T[i][j] << " ";
-		}
-		cout<<endl;
-
-	}
-
-
-}
 //int val0 = _mm_extract_epi16(result_values,0);
 						//int val1 = _mm_extract_epi16(result_values,1);
 						//int val2 = _mm_extract_epi16(result_values,2);
