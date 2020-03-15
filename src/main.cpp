@@ -2,7 +2,6 @@
 #include <iostream>
  #include "baseline.hpp"
 #include <string>
-#include "testCases.cpp"
 #include "testCases.hpp"
 #include <chrono>
 #include <unistd.h>

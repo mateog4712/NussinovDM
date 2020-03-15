@@ -47,16 +47,16 @@ void nussinovSimd(string sequence){
 					__m128i const row1 = _mm_load_si128( (__m128i*) &table[i][n] );
 					__m128i const row2 = _mm_load_si128( (__m128i*) &table[j][n] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
-					__m128i max = _mm_minpos_epu16 (result_values);
+					//__m128i max = _mm_minpos_epu16 (result_values);
 					//vector<int> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
 					//for(uint16_t m=0;m<8;m++){ 
 						//union { __m128i result_values; int16_t i16[8]; };
 						
 							//uint16_t value = results[m];
 						
-							if ( _mm_extract_epi16(max,0) > m4){
-								m4 = _mm_extract_epi16(max,0);
-							} 
+							//if ( _mm_extract_epi16(max,0) > m4){
+								//m4 = _mm_extract_epi16(max,0);
+							//} 
 					//}	
 					}			
 				}
