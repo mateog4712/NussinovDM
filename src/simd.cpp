@@ -20,7 +20,9 @@ void nussinovSimd(string sequence){
 	uint16_t len = sequence.length();
 	//first we initialize the matrics D
 	uint16_t var = -1;
-	vector< vector<uint16_t> > table(len+16,vector<uint16_t>(len+16,var));
+	uint16_t tr1 = 16;
+	uint16_t step = 8;
+	vector< vector<uint16_t> > table(len+tr1,vector<uint16_t>(len+tr1,var));
 	
 	
 	
@@ -34,20 +36,21 @@ void nussinovSimd(string sequence){
 				uint16_t m2 = table[i+1][j];
 
 				auto mB = match(sequence,i,j);
-				uint16_t m3 = 0;
+				uint16_t m3 = var;
 				
 				if(mB!=0)
 					m3 = table[i+1][j-1] - mB;
 				
-				uint16_t m4 = 0;
-				for (uint16_t k = i+1;k<j+7;k+=8)
+				uint16_t m4 = var;
+
+				for (uint16_t k = i+1;k<j+step-1;k+=step)
 				{
 					uint16_t n = k;
-					if(k+8> len){
-					n = len-8;
+					if(k+step> len){
+					n = len-step;
 					}
 					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][n] );
-					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][n] );
+					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][n + 1] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
 					__m128i min = _mm_minpos_epu16 (result_values);
 					//vector<int> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
@@ -55,10 +58,10 @@ void nussinovSimd(string sequence){
 						//union { __m128i result_values; int16_t i16[8]; };
 						
 							//uint16_t value = results[m];
-						
-							if ( _mm_extract_epi16(min,0) < m4){
-								m4 = _mm_extract_epi16(min,0);
-							} 
+							uint16_t rez = _mm_extract_epi16(min,0);
+							if ( rez < m4){
+								m4 = rez;
+							}
 					//}	
 								
 				}
@@ -76,11 +79,11 @@ void nussinovSimd(string sequence){
 		} 
 	}
 	string structure = "";
-	uint16_t energy = table[0][len-1];
+	uint16_t energy = var - table[0][len-1];
 	structure = tracebackS(table, 0, len-1, sequence);
-	cout << var-energy << endl;
+	cout << energy << endl;
 	cout << structure << endl;
-	printTable(table,sequence);
+	// printTable(table,sequence);
 }
 
 
