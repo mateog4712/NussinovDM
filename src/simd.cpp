@@ -1,4 +1,5 @@
 #include "simd.hpp"
+#include <fstream>
 #include "baseline.hpp"
 #include <vector>
 #include <string>
@@ -27,12 +28,13 @@ void nussinovSimd(string sequence){
 	uint16_t len = sequence.length();
 	//first we initialize the matrics D
 	uint16_t var = 0;
-	uint16_t tr1 = 16;
+	uint16_t tr1 = 8;
 	uint16_t step = 8;
 	vector< vector<uint16_t> > table(len+tr1,vector<uint16_t>(len+tr1,var));
 	
 	
-	
+ofstream myfile;
+  myfile.open ("example.txt");
 	for (uint16_t i =len-1;i>=0;i--)
 	{
 		for(uint16_t j=i;j<len;j++)
@@ -50,23 +52,22 @@ void nussinovSimd(string sequence){
 				
 				uint16_t m4 = var;
 
-				for (uint16_t k = i+1;k<j+step-1;k+=step)
+				for (uint16_t k = i+1;k<j;k+=step)
 				{
-					uint16_t n = k;
-					//if(k+step> len){
-					//	n = len-step;
-					//clear}
-					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][n] );
-					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][n + 1] );
+					
+					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
+					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k + 1] );
 					__m128i result_values = _mm_add_epi16(row1,row2);
 					vector<uint16_t> temp = {-1,-1,-1,-1,-1,-1,-1,-1};
 					// printVector(temp);
-					// cout << "i " << i << " " << "j " << j << " " << "k " << k << endl;
+					myfile << "i " << i << " " << "j " << j << " " << "k " << k << endl;
 					__m128i tempr = _mm_loadu_si128( (__m128i*) &temp[0] );
 					vector<uint16_t> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
-					// cout << "results";
+					 myfile << "results" << endl;
 					// cout << endl;
 					// printVector(results);
+					myfile << _mm_extract_epi16(result_values,0)<< " " <<_mm_extract_epi16(result_values,1)<< " " <<_mm_extract_epi16(result_values,2)<< " " <<_mm_extract_epi16(result_values,3)<< " " <<_mm_extract_epi16(result_values,4)<< " " <<_mm_extract_epi16(result_values,5)<< " " <<_mm_extract_epi16(result_values,6) << " " << _mm_extract_epi16(result_values,7) << endl;
+
 
 					results = {_mm_extract_epi16(tempr,0),_mm_extract_epi16(tempr,1),_mm_extract_epi16(tempr,2),_mm_extract_epi16(tempr,3),_mm_extract_epi16(tempr,4),_mm_extract_epi16(tempr,5),_mm_extract_epi16(tempr,6),_mm_extract_epi16(tempr,7)};
 					// cout << "tempr";
@@ -78,17 +79,20 @@ void nussinovSimd(string sequence){
 
 
 					results = {_mm_extract_epi16(xor_result_values,0),_mm_extract_epi16(xor_result_values,1),_mm_extract_epi16(xor_result_values,2),_mm_extract_epi16(xor_result_values,3),_mm_extract_epi16(xor_result_values,4),_mm_extract_epi16(xor_result_values,5),_mm_extract_epi16(xor_result_values,6),_mm_extract_epi16(xor_result_values,7)};
-					// cout << "xor";
-					// cout << endl;
-					// printVector(results);
+					//cout << "xor";
+					//cout << endl;
+					//printVector(results);
+					myfile << "xor" << endl;
+					myfile << _mm_extract_epi16(xor_result_values,0)<< " " <<_mm_extract_epi16(xor_result_values,1)<< " " <<_mm_extract_epi16(xor_result_values,2)<< " " <<_mm_extract_epi16(xor_result_values,3)<< " " <<_mm_extract_epi16(xor_result_values,4)<< " " <<_mm_extract_epi16(xor_result_values,5)<< " " <<_mm_extract_epi16(xor_result_values,6) << " " << _mm_extract_epi16(xor_result_values,7) << endl;
 					
 					__m128i min = _mm_minpos_epu16 (xor_result_values);
 					
 					xor_result_values = _mm_xor_si128(min, tempr);
-					results = {_mm_extract_epi16(xor_result_values,0),_mm_extract_epi16(xor_result_values,1),_mm_extract_epi16(xor_result_values,2),_mm_extract_epi16(xor_result_values,3),_mm_extract_epi16(xor_result_values,4),_mm_extract_epi16(xor_result_values,5),_mm_extract_epi16(xor_result_values,6),_mm_extract_epi16(xor_result_values,7)};
-					// cout << "xor2";
-					// cout << endl;
+					results = {_mm_extract_epi16(xor_result_values,0)};
+					myfile << "xor2" << endl;
+					//cout << endl;
 					// printVector(results);
+					myfile << _mm_extract_epi16(xor_result_values,0) << endl;
 
 					// vector<int> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
 					// for(uint16_t m=0;m<8;m++){ 
@@ -123,20 +127,10 @@ void nussinovSimd(string sequence){
 	structure = traceback(table, 0, len-1, sequence);
 	cout << energy << endl;
 	cout << structure << endl;
-	 //printTable(table,sequence);
+	 printTable(table,sequence);
+	
+  	myfile.close();
 }
-
-
-//int val0 = _mm_extract_epi16(result_values,0);
-						//int val1 = _mm_extract_epi16(result_values,1);
-						//int val2 = _mm_extract_epi16(result_values,2);
-						//int val3 = _mm_extract_epi16(result_values,3);
-						//int val4 = _mm_extract_epi16(result_values,4);
-						//int val5 = _mm_extract_epi16(result_values,5);
-						//int val6 = _mm_extract_epi16(result_values,6);
-						//int val7 = _mm_extract_epi16(result_values,7);
-						
-						//m4 = max (m4,max(val0,max(val1,max(val2,max(val3,max(val4,max(val5,max(val6,val7))))))));
 string tracebackS(vector< vector<uint16_t> > & table, int i, int j, string sequence){
 
 	if(i>j)
