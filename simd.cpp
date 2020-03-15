@@ -5,15 +5,12 @@
 #include <algorithm>
 #include <iostream>
 #include <utility>
-#include "nmmintrin.h" // for SSE4.2
+//#include "nmmintrin.h" // for SSE4.2
 #include <immintrin.h> // for AVX
-#include <emmintrin.h>
-#include "tmmintrin.h"
-#include <smmintrin.h>
 #include <type_traits>
-//#include "avx512vlbwintrin.h"
 
 
+//os.environ['CFLAGS'] = '-mavx';
 
 using namespace std;
 
