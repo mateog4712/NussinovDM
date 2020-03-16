@@ -81,7 +81,7 @@ void nussinovSimd(string sequence){
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 	structure = traceback(table, 0, len-1, sequence);
-	cout << energy << endl;
-	cout << structure << endl;
-	printTableFile(table,sequence, "Simd");
+	// cout << energy << endl;
+	// cout << structure << endl;
+	// printTableFile(table,sequence, "Simd");
 }

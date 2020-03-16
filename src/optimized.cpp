@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 void nussinovOpt(string sequence){
 
 	//take len of the sequence for further use
@@ -54,11 +53,19 @@ void nussinovOpt(string sequence){
 		    break;
 		} 
 	}
+
+
+	//aprintTable(table);
+	//cout<<endl;
+	//printTable(tableT);
+
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 
-	// structure = traceback(table, 0, len-1, sequence);
+	 structure = traceback(table, 0, len-1, sequence);
+
+	// cout << sequence << endl;
 	// cout << structure << endl;
-	// cout << energy << endl;
-	// printTableFile(table,sequence,"Optimized");
+	 cout << energy << endl;
+
 }
