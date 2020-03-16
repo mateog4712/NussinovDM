@@ -58,9 +58,7 @@ void nussinovOpt(string sequence){
 	uint16_t energy = table[0][len-1];
 
 	structure = traceback(table, 0, len-1, sequence);
-	// cout << sequence << endl;
-	//cout << structure << endl;
-	//cout << energy << endl;
-	// printTable(table, sequence);
-
+	cout << structure << endl;
+	cout << energy << endl;
+	printTableFile(table,sequence,"Optimized");
 }

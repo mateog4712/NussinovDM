@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <utility>
+#include <fstream>
 
 
 using namespace std;
@@ -32,6 +33,30 @@ void printTable(vector< vector<uint16_t> > T, string s){
 		cout<<endl;
 
 	}
+
+
+}
+
+void printTableFile(vector< vector<uint16_t> > T, string s, string name){
+	ofstream myfile;
+	myfile.open ("tables.txt", ofstream::app);
+	myfile << name << endl;
+	myfile << "\t";
+	s.resize(T.size(),'$');
+	for (auto i =0; i<s.size(); i++){
+		myfile << s[i] << "\t" ;
+	}
+	myfile << endl;
+	for(uint16_t i=0;i<T.size();i++){
+		myfile << s[i] << "\t";
+		for(uint16_t j=0;j<T.size();j++){
+
+			myfile << T[i][j] << "\t";
+		}
+		myfile<<endl;
+
+	}
+	myfile.close();
 
 
 }
@@ -73,10 +98,6 @@ void nussinov(string sequence){
 			j++;
 		}
 		j = j0;
-		// if(i==0)
-		// {
-		// break;
-		// } 
 	}
 
 //cout<<endl;
@@ -87,9 +108,9 @@ void nussinov(string sequence){
 
 structure = traceback(table, 0, len-1, sequence);
 
-// cout << sequence << endl;
-// cout << structure << endl;
- //cout << energy << endl;
+//  cout << sequence << endl;
+cout << structure << endl;
+ cout << energy << endl;
 
 }
 

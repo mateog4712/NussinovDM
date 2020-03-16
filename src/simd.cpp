@@ -1,17 +1,12 @@
 #include "simd.hpp"
-#include <fstream>
 #include "baseline.hpp"
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <iostream>
 #include <utility>
-//#include "nmmintrin.h" // for SSE4.2
 #include <immintrin.h> // for AVX
 #include <type_traits>
-
-
-//os.environ['CFLAGS'] = '-mavx';
 
 using namespace std;
 
@@ -36,6 +31,7 @@ void nussinovSimd(string sequence){
 	for (int j = 1;j<len;j++)
 	{
 		auto j0 = j;
+		// for(int i = 0;i<len-j0;i++)
 		for(int i=j-1;i>=0;i--)
 		{
 			if (i<j)
@@ -50,7 +46,6 @@ void nussinovSimd(string sequence){
 					m3 = table[i+1][j-1] + mB;
 				
 				uint16_t m4 = var;
-				myfile << "i " << i << " " << "j " << j << endl;
 
 				for (uint16_t k = i+1;k<j;k+=step)
 				{	// Load the two rows from the matrix
@@ -71,52 +66,22 @@ void nussinovSimd(string sequence){
 					uint16_t rez = _mm_extract_epi16(xor_result_values,0);
 					if ( rez > m4){
 						m4 = rez;
-					}			
+					}	
+						
 				}
 				// take the maximum of the four operations
 				uint16_t ins = max(m1,max(m2,max(m3,m4)));
 				table[i][j] = ins;
 				table[j][i] = ins;
-
 			}
-			
+			// j++;	
 		}
+		// j=j0;
 	}
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 	structure = traceback(table, 0, len-1, sequence);
-	//cout << energy << endl;
-	//cout << structure << endl;
-	 //printTable(table,sequence);	
-}
-string tracebackS(vector< vector<uint16_t> > & table, int i, int j, string sequence){
-
-	if(i>j)
-	{
-		return "";
-	}
-
-	if(table[i+1][j-1] - 1 == table[i][j] and match(sequence,i,j))
-	{
-
-	return "(" + tracebackS(table,i+1,j-1,sequence) + ")";
-	}
-	else if(table[i+1][j] == table[i][j])
-	{
-		return "." + tracebackS(table,i+1,j,sequence);
-	}
-	else if(table[i][j-1] == table[i][j])
-	{
-		return tracebackS(table,i,j-1,sequence) + ".";
-	}
-	else{
-
-		for(uint16_t k = i+1; k<j;k++){
-
-			if(table[i][k] + table[k+1][j] == table[i][j]){
-			return tracebackS(table,i,k,sequence) + tracebackS(table,k+1,j,sequence);		
-			}
-		}
-	}
-	return "";
+	cout << energy << endl;
+	cout << structure << endl;
+	printTableFile(table,sequence, "Simd");
 }

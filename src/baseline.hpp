@@ -13,5 +13,7 @@ std::string traceback(std::vector< std::vector<uint16_t> > &table, uint16_t i, u
 
 void printTable(std::vector< std::vector<uint16_t> > T, std::string sequence);
 
+void printTableFile(std::vector< std::vector<uint16_t> > T, std::string s, std::string name);
+
 
 #endif
