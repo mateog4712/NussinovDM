@@ -66,6 +66,6 @@ void nussinovOpt(string sequence){
 
 	// cout << sequence << endl;
 	// cout << structure << endl;
-	 cout << energy << endl;
+	//  cout << energy << endl;
 
 }
