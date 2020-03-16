@@ -33,11 +33,10 @@ void nussinovSimd(string sequence){
 	vector< vector<uint16_t> > table(len+tr1,vector<uint16_t>(len+tr1,var));
 	
 	
-ofstream myfile;
-  myfile.open ("example.txt");
-	for (uint16_t i =len-1;i>=0;i--)
+	for (int j = 1;j<len;j++)
 	{
-		for(uint16_t j=i;j<len;j++)
+		auto j0 = j;
+		for(int i=j-1;i>=0;i--)
 		{
 			if (i<j)
 			{
@@ -47,69 +46,34 @@ ofstream myfile;
 				auto mB = match(sequence,i,j);
 				uint16_t m3 = var;
 				
-				if(mB!=0)
+				if(mB)
 					m3 = table[i+1][j-1] + mB;
 				
 				uint16_t m4 = var;
+				myfile << "i " << i << " " << "j " << j << endl;
 
 				for (uint16_t k = i+1;k<j;k+=step)
-				{
-					
+				{	// Load the two rows from the matrix
 					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
 					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k + 1] );
+					// add them
 					__m128i result_values = _mm_add_epi16(row1,row2);
+					// Load a row of -1's unsigned to be used for xor
 					vector<uint16_t> temp = {-1,-1,-1,-1,-1,-1,-1,-1};
-					// printVector(temp);
-					myfile << "i " << i << " " << "j " << j << " " << "k " << k << endl;
 					__m128i tempr = _mm_loadu_si128( (__m128i*) &temp[0] );
-					vector<uint16_t> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
-					 myfile << "results" << endl;
-					// cout << endl;
-					// printVector(results);
-					myfile << _mm_extract_epi16(result_values,0)<< " " <<_mm_extract_epi16(result_values,1)<< " " <<_mm_extract_epi16(result_values,2)<< " " <<_mm_extract_epi16(result_values,3)<< " " <<_mm_extract_epi16(result_values,4)<< " " <<_mm_extract_epi16(result_values,5)<< " " <<_mm_extract_epi16(result_values,6) << " " << _mm_extract_epi16(result_values,7) << endl;
-
-
-					results = {_mm_extract_epi16(tempr,0),_mm_extract_epi16(tempr,1),_mm_extract_epi16(tempr,2),_mm_extract_epi16(tempr,3),_mm_extract_epi16(tempr,4),_mm_extract_epi16(tempr,5),_mm_extract_epi16(tempr,6),_mm_extract_epi16(tempr,7)};
-					// cout << "tempr";
-					// cout << endl;
-					// printVector(results);
-
+					// xor the results
 					__m128i xor_result_values = _mm_xor_si128(result_values, tempr);
-
-
-
-					results = {_mm_extract_epi16(xor_result_values,0),_mm_extract_epi16(xor_result_values,1),_mm_extract_epi16(xor_result_values,2),_mm_extract_epi16(xor_result_values,3),_mm_extract_epi16(xor_result_values,4),_mm_extract_epi16(xor_result_values,5),_mm_extract_epi16(xor_result_values,6),_mm_extract_epi16(xor_result_values,7)};
-					//cout << "xor";
-					//cout << endl;
-					//printVector(results);
-					myfile << "xor" << endl;
-					myfile << _mm_extract_epi16(xor_result_values,0)<< " " <<_mm_extract_epi16(xor_result_values,1)<< " " <<_mm_extract_epi16(xor_result_values,2)<< " " <<_mm_extract_epi16(xor_result_values,3)<< " " <<_mm_extract_epi16(xor_result_values,4)<< " " <<_mm_extract_epi16(xor_result_values,5)<< " " <<_mm_extract_epi16(xor_result_values,6) << " " << _mm_extract_epi16(xor_result_values,7) << endl;
-					
+					// find the minimum in the results
 					__m128i min = _mm_minpos_epu16 (xor_result_values);
-					
+					// xor them back
 					xor_result_values = _mm_xor_si128(min, tempr);
-					results = {_mm_extract_epi16(xor_result_values,0)};
-					myfile << "xor2" << endl;
-					//cout << endl;
-					// printVector(results);
-					myfile << _mm_extract_epi16(xor_result_values,0) << endl;
-
-					// vector<int> results = {_mm_extract_epi16(result_values,0),_mm_extract_epi16(result_values,1),_mm_extract_epi16(result_values,2),_mm_extract_epi16(result_values,3),_mm_extract_epi16(result_values,4),_mm_extract_epi16(result_values,5),_mm_extract_epi16(result_values,6),_mm_extract_epi16(result_values,7)};
-					// for(uint16_t m=0;m<8;m++){ 
-					// 	union { __m128i result_values; int16_t i16[8]; };
-						
-							//uint16_t value = results[m];
-							uint16_t rez = _mm_extract_epi16(xor_result_values,0);
-							if ( rez > m4){
-								m4 = rez;
-							}
-					//}	
-					// break;
-								
+					// take the value out and make it m4 if it is greater
+					uint16_t rez = _mm_extract_epi16(xor_result_values,0);
+					if ( rez > m4){
+						m4 = rez;
+					}			
 				}
-				// break;
-				
-				// uint16_t ins = min(m1,min(m2,min(m3,m4)));
+				// take the maximum of the four operations
 				uint16_t ins = max(m1,max(m2,max(m3,m4)));
 				table[i][j] = ins;
 				table[j][i] = ins;
@@ -117,19 +81,13 @@ ofstream myfile;
 			}
 			
 		}
-		if(i==0)
-		{
-		    break;
-		} 
 	}
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 	structure = traceback(table, 0, len-1, sequence);
-	cout << energy << endl;
-	cout << structure << endl;
-	 printTable(table,sequence);
-	
-  	myfile.close();
+	//cout << energy << endl;
+	//cout << structure << endl;
+	 //printTable(table,sequence);	
 }
 string tracebackS(vector< vector<uint16_t> > & table, int i, int j, string sequence){
 
