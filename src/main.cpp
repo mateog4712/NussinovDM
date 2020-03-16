@@ -47,17 +47,17 @@ int main() {
 	// cout << "Calculating Nussinov..." << endl;
 	/** The functions are run **/
 	// avg = 0.0;
-	for (int j=0;j<numofIter;j++)
-	{
-		// auto start = chrono::steady_clock::now();
-		for(auto i=0;i<testData.size();i++){
+	// for (int j=0;j<numofIter;j++)
+	// {
+	// 	// auto start = chrono::steady_clock::now();
+	// 	for(auto i=0;i<testData.size();i++){
 
-			nussinovSimd(testData[i]);
+	// 		nussinovSimd(testData[i]);
 
-		}
-		// auto end = chrono::steady_clock::now();
-		// avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-	}
+	// 	}
+	// 	// auto end = chrono::steady_clock::now();
+	// 	// avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+	// }
 	// avg = avg / numofIter;
 	// cout << "Average elapsed time: " << avg << endl;
 	
