@@ -62,7 +62,7 @@ void nussinovSimd(string sequence){
 					// find the minimum in the results
 					__m128i min = _mm_minpos_epu16 (xor_result_values);
 					
-					uint16_t rez = _mm_extract_epi16(xor_result_values,0);
+					uint16_t rez = _mm_extract_epi16(min,0);
 					// xor the value back
 					rez = rez ^ tempr[0];
 					if ( rez > m4){
@@ -135,7 +135,7 @@ void nussinovSimd2(string sequence){
 					// find the minimum in the results
 					__m128i min = _mm_minpos_epu16 (xor_result_values);
 					
-					uint16_t rez = _mm_extract_epi16(xor_result_values,0);
+					uint16_t rez = _mm_extract_epi16(min,0);
 					// xor the value back
 					rez = rez ^ tempr[0];
 					if ( rez > m4){
