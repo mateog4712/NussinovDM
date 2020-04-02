@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <algorithm>
 
-__device__ void add(int *a, int *b, int *c) {
+__global__ void add(int *a, int *b, int *c) {
 	c[blockIdx.x] = a[blockIdx.x] + b[blockIdx.x];
 }
 
@@ -18,6 +18,7 @@ __device__  void printTableGPU(int * T, char* s, int * len1){
 	// s.resize(T.size(),'$');
 	printf("\t");
 	printf("\n");
+	printf("\t");
 	for (int i =0; i<len; i++){
 		printf("%c\t", s[i]);
 	}
@@ -55,14 +56,18 @@ __global__ void mykernel(int * table, char * sequence,int * len1) {
 				int m4 = 0;
 				for (int k = i+1;k<j;k++)
 				{
-					if (table[len*i+k] + table[len*(k+1)+j] > m4)
+					if (table[len*i+k] + table[len*(j)+(k+1)] > m4)
 						m4 = table[len*i+k] + table[len*(k+1)+j];
 				}
 				//cout << m1 << " " << m2 << " " << m3 << " " << m4 << endl;
 				// __vmaxu4 ( unsigned int  a, unsigned int  b )
 				
 
-				table[len*i+j] = __vmaxu4(m1,__vmaxu4(m2,__vmaxu4(m3,m4)));
+				int max = __vmaxu4(m1,__vmaxu4(m2,__vmaxu4(m3,m4)));
+				table[len*j+i] = max;
+				table[len*i+j] = max;
+				
+
 				// if (table[len*i+j] !=0)
 				// {
 				// 	printf ("%d\t%d\t%d\t%d\t%d\n", m1,m2,m3, m4, table[len*i+j]);
@@ -82,6 +87,7 @@ void printTable(int * T, char* s, int * len1){
 	// s.resize(T.size(),'$');
 	printf("\t");
 	printf("\n");
+	printf("\t");
 	for (int i =0; i<len; i++){
 		printf("%c\t", s[i]);
 	}
@@ -118,10 +124,7 @@ int main(void) {
 		else 
 		seq[i] = 'C';
 	}
-	// seq = "GGAAACACCU";
-	// printf("%s", seq);
 
-	
 	
 	int * x;
 	x = (int*)malloc( (*len) * (*len) * sizeof(int) );
@@ -161,7 +164,10 @@ int main(void) {
 	cudaMemcpy(x, table, size3, cudaMemcpyDeviceToHost);
 
 	printTable(x,seq,len);
+	add<<<5,1>>>(table,table+5,table+10);
+	cudaMemcpy(x, table, size3, cudaMemcpyDeviceToHost);
 
+	//printTable(x,seq,len);
 	
 
 
