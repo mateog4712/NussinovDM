@@ -13,35 +13,20 @@ CMakeFiles/main.dir/main.cpp.o: ../bottomUp.hpp
 CMakeFiles/main.dir/main.cpp.o: ../main.cpp
 CMakeFiles/main.dir/main.cpp.o: ../optPar.hpp
 CMakeFiles/main.dir/main.cpp.o: ../optimized.hpp
-CMakeFiles/main.dir/main.cpp.o: ../parallel.hpp
 CMakeFiles/main.dir/main.cpp.o: ../recursion.hpp
-CMakeFiles/main.dir/main.cpp.o: ../recursionParallel.hpp
 CMakeFiles/main.dir/main.cpp.o: ../removedBranching.hpp
 CMakeFiles/main.dir/main.cpp.o: ../simd.hpp
 CMakeFiles/main.dir/main.cpp.o: ../testCases.hpp
 CMakeFiles/main.dir/main.cpp.o: ../transp2mtr.hpp
 CMakeFiles/main.dir/main.cpp.o: ../variation.hpp
 
-CMakeFiles/main.dir/optPar.cpp.o: ../baseline.hpp
-CMakeFiles/main.dir/optPar.cpp.o: ../optPar.cpp
-CMakeFiles/main.dir/optPar.cpp.o: ../optPar.hpp
-
 CMakeFiles/main.dir/optimized.cpp.o: ../baseline.hpp
 CMakeFiles/main.dir/optimized.cpp.o: ../optimized.cpp
 CMakeFiles/main.dir/optimized.cpp.o: ../optimized.hpp
 
-CMakeFiles/main.dir/parallel.cpp.o: ../baseline.hpp
-CMakeFiles/main.dir/parallel.cpp.o: ../parallel.cpp
-CMakeFiles/main.dir/parallel.cpp.o: ../parallel.hpp
-
 CMakeFiles/main.dir/recursion.cpp.o: ../baseline.hpp
 CMakeFiles/main.dir/recursion.cpp.o: ../recursion.cpp
 CMakeFiles/main.dir/recursion.cpp.o: ../recursion.hpp
-
-CMakeFiles/main.dir/recursionParallel.cpp.o: ../baseline.hpp
-CMakeFiles/main.dir/recursionParallel.cpp.o: ../recursion.hpp
-CMakeFiles/main.dir/recursionParallel.cpp.o: ../recursionParallel.cpp
-CMakeFiles/main.dir/recursionParallel.cpp.o: ../recursionParallel.hpp
 
 CMakeFiles/main.dir/removedBranching.cpp.o: ../baseline.hpp
 CMakeFiles/main.dir/removedBranching.cpp.o: ../removedBranching.cpp

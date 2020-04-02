@@ -109,35 +109,9 @@ CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mgray7/Documents/NussinovDM/src/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
-CMakeFiles/main.dir/optPar.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/optPar.cpp.o: ../optPar.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/optPar.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/optPar.cpp.o -c /home/mgray7/Documents/NussinovDM/src/optPar.cpp
-
-CMakeFiles/main.dir/optPar.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/optPar.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mgray7/Documents/NussinovDM/src/optPar.cpp > CMakeFiles/main.dir/optPar.cpp.i
-
-CMakeFiles/main.dir/optPar.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/optPar.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mgray7/Documents/NussinovDM/src/optPar.cpp -o CMakeFiles/main.dir/optPar.cpp.s
-
-CMakeFiles/main.dir/parallel.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/parallel.cpp.o: ../parallel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/parallel.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/parallel.cpp.o -c /home/mgray7/Documents/NussinovDM/src/parallel.cpp
-
-CMakeFiles/main.dir/parallel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/parallel.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mgray7/Documents/NussinovDM/src/parallel.cpp > CMakeFiles/main.dir/parallel.cpp.i
-
-CMakeFiles/main.dir/parallel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/parallel.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mgray7/Documents/NussinovDM/src/parallel.cpp -o CMakeFiles/main.dir/parallel.cpp.s
-
 CMakeFiles/main.dir/recursion.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/recursion.cpp.o: ../recursion.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/recursion.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/recursion.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/recursion.cpp.o -c /home/mgray7/Documents/NussinovDM/src/recursion.cpp
 
 CMakeFiles/main.dir/recursion.cpp.i: cmake_force
@@ -148,22 +122,9 @@ CMakeFiles/main.dir/recursion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/recursion.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mgray7/Documents/NussinovDM/src/recursion.cpp -o CMakeFiles/main.dir/recursion.cpp.s
 
-CMakeFiles/main.dir/recursionParallel.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/recursionParallel.cpp.o: ../recursionParallel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/recursionParallel.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/recursionParallel.cpp.o -c /home/mgray7/Documents/NussinovDM/src/recursionParallel.cpp
-
-CMakeFiles/main.dir/recursionParallel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/recursionParallel.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mgray7/Documents/NussinovDM/src/recursionParallel.cpp > CMakeFiles/main.dir/recursionParallel.cpp.i
-
-CMakeFiles/main.dir/recursionParallel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/recursionParallel.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mgray7/Documents/NussinovDM/src/recursionParallel.cpp -o CMakeFiles/main.dir/recursionParallel.cpp.s
-
 CMakeFiles/main.dir/removedBranching.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/removedBranching.cpp.o: ../removedBranching.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/removedBranching.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/removedBranching.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/removedBranching.cpp.o -c /home/mgray7/Documents/NussinovDM/src/removedBranching.cpp
 
 CMakeFiles/main.dir/removedBranching.cpp.i: cmake_force
@@ -176,7 +137,7 @@ CMakeFiles/main.dir/removedBranching.cpp.s: cmake_force
 
 CMakeFiles/main.dir/simd.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/simd.cpp.o: ../simd.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/simd.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/simd.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/simd.cpp.o -c /home/mgray7/Documents/NussinovDM/src/simd.cpp
 
 CMakeFiles/main.dir/simd.cpp.i: cmake_force
@@ -189,7 +150,7 @@ CMakeFiles/main.dir/simd.cpp.s: cmake_force
 
 CMakeFiles/main.dir/testCases.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/testCases.cpp.o: ../testCases.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/testCases.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/testCases.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/testCases.cpp.o -c /home/mgray7/Documents/NussinovDM/src/testCases.cpp
 
 CMakeFiles/main.dir/testCases.cpp.i: cmake_force
@@ -202,7 +163,7 @@ CMakeFiles/main.dir/testCases.cpp.s: cmake_force
 
 CMakeFiles/main.dir/transp2mtr.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/transp2mtr.cpp.o: ../transp2mtr.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/transp2mtr.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/transp2mtr.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/transp2mtr.cpp.o -c /home/mgray7/Documents/NussinovDM/src/transp2mtr.cpp
 
 CMakeFiles/main.dir/transp2mtr.cpp.i: cmake_force
@@ -215,7 +176,7 @@ CMakeFiles/main.dir/transp2mtr.cpp.s: cmake_force
 
 CMakeFiles/main.dir/variation.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/variation.cpp.o: ../variation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/variation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/variation.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/variation.cpp.o -c /home/mgray7/Documents/NussinovDM/src/variation.cpp
 
 CMakeFiles/main.dir/variation.cpp.i: cmake_force
@@ -232,10 +193,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/bottomUp.cpp.o" \
 "CMakeFiles/main.dir/optimized.cpp.o" \
 "CMakeFiles/main.dir/main.cpp.o" \
-"CMakeFiles/main.dir/optPar.cpp.o" \
-"CMakeFiles/main.dir/parallel.cpp.o" \
 "CMakeFiles/main.dir/recursion.cpp.o" \
-"CMakeFiles/main.dir/recursionParallel.cpp.o" \
 "CMakeFiles/main.dir/removedBranching.cpp.o" \
 "CMakeFiles/main.dir/simd.cpp.o" \
 "CMakeFiles/main.dir/testCases.cpp.o" \
@@ -249,10 +207,7 @@ main: CMakeFiles/main.dir/baseline.cpp.o
 main: CMakeFiles/main.dir/bottomUp.cpp.o
 main: CMakeFiles/main.dir/optimized.cpp.o
 main: CMakeFiles/main.dir/main.cpp.o
-main: CMakeFiles/main.dir/optPar.cpp.o
-main: CMakeFiles/main.dir/parallel.cpp.o
 main: CMakeFiles/main.dir/recursion.cpp.o
-main: CMakeFiles/main.dir/recursionParallel.cpp.o
 main: CMakeFiles/main.dir/removedBranching.cpp.o
 main: CMakeFiles/main.dir/simd.cpp.o
 main: CMakeFiles/main.dir/testCases.cpp.o
@@ -260,7 +215,7 @@ main: CMakeFiles/main.dir/transp2mtr.cpp.o
 main: CMakeFiles/main.dir/variation.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mgray7/Documents/NussinovDM/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

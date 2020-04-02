@@ -20,7 +20,7 @@ using namespace std;
 int main() {
 	/** Definition of Variables and creation of data **/
 	//srand(time(0));
-	int numofIter = 1;
+	int numofIter = 5;
 	
 	// vector<string> testData;// = {"AAGGGGUU"};
 	//cout << "Creating data..." << endl;
@@ -30,51 +30,52 @@ int main() {
 	/** The functions are run **/
 
 
-	double avg = 0.0;
+	// double avg = 0.0;
 	for (int j=0;j<numofIter;j++)
 	{
-		auto start = chrono::steady_clock::now();
-		for(auto i=0;i<testData.size();i++){
-
-			nussinovOpt(testData[i]);
-
-		}
-		auto end = chrono::steady_clock::now();
-		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-	}
-	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
-	avg =0;
-	cout << "Calculating Nussinov..." << endl;
-	avg = 0.0;
-	for (int j=0;j<numofIter;j++)
-	{
-		auto start = chrono::steady_clock::now();
-		for(auto i=0;i<testData.size();i++){
-
-			nussinovSimd(testData[i]);
-
-		}
-		auto end = chrono::steady_clock::now();
-		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
-	}
-	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
-	avg =0;
-	cout << "Calculating Nussinov..." << endl;
-	for (int j=0;j<numofIter;j++)
-	{
-		auto start = chrono::steady_clock::now();
+		// auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
 
 			nussinovSimd2(testData[i]);
 
 		}
-		auto end = chrono::steady_clock::now();
-		avg += chrono::duration_cast<chrono::seconds>(end-start).count();
 	}
-	avg = avg / numofIter;
-	cout << "Average elapsed time: " << avg << endl;
+	// 	auto end = chrono::steady_clock::now();
+	// 	avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+	// }
+	// avg = avg / numofIter;
+	// cout << "Average elapsed time: " << avg << endl;
+	// avg =0;
+	// cout << "Calculating Nussinov..." << endl;
+	// avg = 0.0;
+	// for (int j=0;j<numofIter;j++)
+	// {
+	// 	auto start = chrono::steady_clock::now();
+	// 	for(auto i=0;i<testData.size();i++){
+
+	// 		nussinovSimd(testData[i]);
+
+	// 	}
+	// 	auto end = chrono::steady_clock::now();
+	// 	avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+	// }
+	// avg = avg / numofIter;
+	// cout << "Average elapsed time: " << avg << endl;
+	// avg =0;
+	// cout << "Calculating Nussinov..." << endl;
+	// for (int j=0;j<numofIter;j++)
+	// {
+	// 	auto start = chrono::steady_clock::now();
+	// 	for(auto i=0;i<testData.size();i++){
+
+	// 		nussinovSimd2(testData[i]);
+
+	// 	}
+	// 	auto end = chrono::steady_clock::now();
+	// 	avg += chrono::duration_cast<chrono::seconds>(end-start).count();
+	// }
+	// avg = avg / numofIter;
+	// cout << "Average elapsed time: " << avg << endl;
 
 
 

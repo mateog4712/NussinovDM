@@ -204,33 +204,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-optPar.o: optPar.cpp.o
-
-.PHONY : optPar.o
-
-# target to build an object file
-optPar.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/optPar.cpp.o
-.PHONY : optPar.cpp.o
-
-optPar.i: optPar.cpp.i
-
-.PHONY : optPar.i
-
-# target to preprocess a source file
-optPar.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/optPar.cpp.i
-.PHONY : optPar.cpp.i
-
-optPar.s: optPar.cpp.s
-
-.PHONY : optPar.s
-
-# target to generate assembly for a file
-optPar.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/optPar.cpp.s
-.PHONY : optPar.cpp.s
-
 optimized.o: optimized.cpp.o
 
 .PHONY : optimized.o
@@ -258,33 +231,6 @@ optimized.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/optimized.cpp.s
 .PHONY : optimized.cpp.s
 
-parallel.o: parallel.cpp.o
-
-.PHONY : parallel.o
-
-# target to build an object file
-parallel.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/parallel.cpp.o
-.PHONY : parallel.cpp.o
-
-parallel.i: parallel.cpp.i
-
-.PHONY : parallel.i
-
-# target to preprocess a source file
-parallel.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/parallel.cpp.i
-.PHONY : parallel.cpp.i
-
-parallel.s: parallel.cpp.s
-
-.PHONY : parallel.s
-
-# target to generate assembly for a file
-parallel.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/parallel.cpp.s
-.PHONY : parallel.cpp.s
-
 recursion.o: recursion.cpp.o
 
 .PHONY : recursion.o
@@ -311,33 +257,6 @@ recursion.s: recursion.cpp.s
 recursion.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/recursion.cpp.s
 .PHONY : recursion.cpp.s
-
-recursionParallel.o: recursionParallel.cpp.o
-
-.PHONY : recursionParallel.o
-
-# target to build an object file
-recursionParallel.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/recursionParallel.cpp.o
-.PHONY : recursionParallel.cpp.o
-
-recursionParallel.i: recursionParallel.cpp.i
-
-.PHONY : recursionParallel.i
-
-# target to preprocess a source file
-recursionParallel.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/recursionParallel.cpp.i
-.PHONY : recursionParallel.cpp.i
-
-recursionParallel.s: recursionParallel.cpp.s
-
-.PHONY : recursionParallel.s
-
-# target to generate assembly for a file
-recursionParallel.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/recursionParallel.cpp.s
-.PHONY : recursionParallel.cpp.s
 
 removedBranching.o: removedBranching.cpp.o
 
@@ -492,21 +411,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... optPar.o"
-	@echo "... optPar.i"
-	@echo "... optPar.s"
 	@echo "... optimized.o"
 	@echo "... optimized.i"
 	@echo "... optimized.s"
-	@echo "... parallel.o"
-	@echo "... parallel.i"
-	@echo "... parallel.s"
 	@echo "... recursion.o"
 	@echo "... recursion.i"
 	@echo "... recursion.s"
-	@echo "... recursionParallel.o"
-	@echo "... recursionParallel.i"
-	@echo "... recursionParallel.s"
 	@echo "... removedBranching.o"
 	@echo "... removedBranching.i"
 	@echo "... removedBranching.s"
