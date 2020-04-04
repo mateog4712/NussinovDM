@@ -39,7 +39,7 @@ void printTable(vector< vector<uint16_t> > T, string s){
 
 void printTableFile(vector< vector<uint16_t> > T, string s, string name){
 	ofstream myfile;
-	myfile.open ("tables.txt", ofstream::app);
+	myfile.open (name + ".txt", ofstream::trunc);
 	myfile << name << endl;
 	myfile << "\t";
 	s.resize(T.size(),'$');
@@ -107,9 +107,10 @@ void nussinov(string sequence){
  	uint16_t energy = table[0][len-1];
 
 	structure = traceback(table, 0, len-1, sequence);
+	printTableFile(table,sequence,"check2");
 
 	//  cout << sequence << endl;
-	cout << structure << endl;
+	//cout << structure << endl;
  	cout << energy << endl;
 
 }

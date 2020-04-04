@@ -81,8 +81,10 @@ void nussinovSimd(string sequence){
 	}
 	string structure = "";
 	uint16_t energy = table[0][len-1];
+	printTableFile(table,sequence,"check3");
+
 	// structure = traceback(table, 0, len-1, sequence);
-	// cout << energy << endl;
+	 cout << energy << endl;
 	// cout << structure << endl;
 	// printTableFile(table,sequence, "Simd");
 }
@@ -125,11 +127,16 @@ void nussinovSimd2(string sequence){
 
 				for (uint16_t k = i+1;k<j;k+=step)
 				{	// Load the two rows from the matrix
+				// i = 4 j = 5 k =5
+				// start at row1 4 column 5
+				// start at row2 5 column 6
+				// i = 5 j = 6 k =6
+				// start at row1 5 column 6
+				// start at row2 6 column 7
 					__m128i const row1 = _mm_loadu_si128( (__m128i*) &table[i][k] );
 					__m128i const row2 = _mm_loadu_si128( (__m128i*) &table[j][k + 1] );
 					// add them
 					__m128i result_values = _mm_add_epi16(row1,row2);
-					
 					// xor the results
 					__m128i xor_result_values = _mm_xor_si128(result_values, tempr);
 					// find the minimum in the results
@@ -148,15 +155,14 @@ void nussinovSimd2(string sequence){
 				table[i][j] = ins;
 				table[j][i] = ins;
 			}
-			// cout <<  << endl;
 		}
-		// cout << "_____________" << endl;
 		j=j0;
 	}
 	string structure = "";
 	uint16_t energy = table[0][len-1];
 	// structure = traceback(table, 0, len-1, sequence);
-	// cout << energy << endl;
+	cout << energy << endl;
+	printTableFile(table,sequence,"check");
 	// cout << structure << endl;
 	// printTableFile(table,sequence, "Simd");
 }

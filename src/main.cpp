@@ -23,7 +23,7 @@ int main() {
 	/** Definition of Variables and creation of data **/
 	//srand(time(0));
 	//nussinovSimd2(s12);
-	int numofIter = 5;
+	int numofIter = 1;
 	
 	// vector<string> testData;// = {"AAGGGGUU"};
 	//cout << "Creating data..." << endl;
@@ -38,8 +38,12 @@ int main() {
 	{
 		// auto start = chrono::steady_clock::now();
 		for(auto i=0;i<testData.size();i++){
-
+			cout << "simdPar: ";
 			nussinovSimd2(testData[i]);
+			cout << "baseline: ";
+			nussinov(testData[i]);
+			cout << "simd: ";
+			nussinovSimd(testData[i]);
 
 		}
 	}
