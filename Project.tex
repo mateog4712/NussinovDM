@@ -9,9 +9,155 @@
 \author{Mateo Gray and Hamza Iseric }
 \date{February 23 2020}
 
+\RequirePackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@Article{nussinov,
+  title = {Fast algorithm for predicting the secondary structure of single-stranded {RNA}},
+  author = {Nussinov, Ruth and Jacobsen, Ann B},
+  journal = {PNAS},
+  volume = {77},
+  number = {11},
+  pages = {6309--6313},
+  year = {1980},
+}
+
+@InProceedings{stojanovski,
+  title = {Parallelization of Dynamic Programming in {Nussinov} {RNA} Folding Algorithm on the {CUDA GPU}},
+  author = {Stojanovski, Marina Zaharieva  and Gjorgjevikj, Dejan and Madjarov, Gjorgji},
+  booktitle = {Proc.  ICT Innovations},
+  year = {2012},
+  pages = {},
+}
+
+@InProceedings{nussinov-chang,
+  title = {Accelerating the {Nussinov} {RNA} folding algorithm with {CUDA/GPU}},
+  author = {Chang, Dar-Jen and Kimmer, Christopher and Ouyang, Ming},
+  booktitle = {Proc.  ISSPIT},
+  year = {2010},
+  pages = {},
+}
+
+@Article{nussinov-li,
+  title = {Multicore and {GPU} algorithms for Nussinov {RNA} folding},
+  author = {Li, Junjie and Ranka, Sanjay and Sahni, Sartaj},
+  journal = {BMC Bioinformatics},
+  volume = {15},
+  number = {S1},
+  pages = {},
+  year = {2014},
+}
+
+@Article{nussinov-cache,
+  title = {Cache and energy efficient algorithms for {Nussinov}’s {RNA} Folding},
+  author = {Zhao, Chunchun and Sahni, Sartaj},
+  journal = {BMC Bioinformatics},
+  volume = {18},
+  number = {S15},
+  pages = {},
+  year = {2017},
+}
+
+@Article{zucker-cache,
+  title = {Efficient {RNA} folding using {Zuker}'s method},
+  author = {Zhao, Chunchun and Sahni, Sartaj},
+  booktitle = {Proc. ICCABS},
+  pages = {},
+  year = {2017},
+}
+
+@Article{nussinov-palkowski,
+  title = {Tuning iteration space slicing based tiled multi-core code implementing {Nussinov}’s {RNA} folding},
+  author = {Palkowski, Marek and Bielecki, Wlodzimierz},
+  journal = {BMC Bioinformatics},
+  volume = {19},
+  number = {12},
+  pages = {},
+  year = {2018},
+}
+
+@Article{nussinov-palkowski-tiling,
+  title = {Tiling {Nussinov}’s {RNA} folding loop nest with a space-time approach},
+  author = {Palkowski, Marek and Bielecki, Wlodzimierz},
+  journal = {BMC Bioinformatics},
+  volume = {20},
+  number = {28},
+  pages = {},
+  year = {2019},
+}
+
+@Article{nussinov-palkowski-continued,
+  title = {Parallel tiled cache and energy efficient codes for {RNA} folding algorithms},
+  author = {Palkowski, Marek and Bielecki, Wlodzimierz},
+  journal = {Journal of Parallel and Distributed Computing},
+  volume = {137},
+  number = {},
+  pages = {252--258},
+  year = {2020},
+}
+
+@Article{zucker,
+  title = {{RNA} secondary structure and their prediction},
+  author = {Zucker, M and Sankoff, D},
+  journal = {Bull Math Biol},
+  volume = {46},
+  number = {},
+  pages = {591--621},
+  year = {1984},
+}
+
+@Article{zucker-lei,
+  title = {{CPU-GPU} hybrid accelerating the {Zuker} algorithm for {RNA} secondary structure prediction applications},
+  author = {Lei, Guoqing and Dou, Yong and Wan, Wen and Xia, Fei and Li, Rongchun and Ma, Meng and Zou, Dan},
+  journal = {BMC Genomics},
+  volume = {13},
+  number = {S14},
+  pages = {},
+  year = {2012},
+}
+
+@InProceedings{zucker-gpu-gems,
+  title = {{GPU} Accelerated {RNA} Folding Algorithm},
+  author = {Rizk, Guillaume and Lavenier, Dominique},
+  booktitle = {Proc.  ICCS},
+  year = {2009},
+  pages = {1004--1013},
+}
+
+@InProceedings{zucker-jacob,
+  title = {Rapid {RNA} Folding: Analysis and Acceleration of the {Zuker} Recurrence},
+  author = {Jacob, Arpith C and Buhler, Jeremy D and Chamberlain, Roger D},
+  booktitle = {Proc.  FCCM},
+  year = {2010},
+  pages = {87--94},
+}
+
+
+@InProceedings{zucker-singh,
+  title = {Optimization of {Zuker Algorithm} on {GPUs}},
+  author = {Singh, Amik and Misra, Manoj},
+  booktitle = {Proc.  PDCAT},
+  year = {2017},
+  pages = {249--254},
+}
+
+
+@InProceedings{sankoff-sundfeld,
+  title = {{CUDA-Sankoff}: Using {GPU} to Accelerate the Pairwise Structural {RNA} Alignment},
+  author = {Sundfeld, Daniel and Havgaard, Jakob H and Gorodkin, Jan and C. M. A. de Melo, Alba},
+  booktitle = {Proc.  PDP},
+  year = {2017},
+  pages = {},
+}
+
+
+
+
+\end{filecontents}
+
+
 \begin{document}
 
-\maketitle
+\maketitle\nocite{*}
 
 \section{Introduction}
 
@@ -19,5 +165,8 @@ A big topic in the field of Bioinformatics is that of secondary structure predic
 
 \section*{Algorithmic Description}
 This paper explores the Nussinov Algorithm. The Nussinov algorithm looks at predicting secondary structure in RNA sequences. As an input, it takes long string of characters and gives back the structure which is visualized  through 3 different characters. The first two characters are parentheses: '(' and ')'. These are used to show when two bases are paired. The other character is a period: '.' which is used to show when there is an unpaired base. In both the input and output, the data structure used is a string. There are 2 main parts to the algorithm. The first part defines an n by n matrix where n is the length of the input. Each index in the matrix corresponds to a to the ith and jth letter in the sequence where i and j are the row and column. With that, it is important to point out that since this the same sequence, this matrix can be viewed as a triangular matrix (thus reducing the insertions) and all indexes that are the same will not be looked at either. For the remaining indexes, the algorithm will move through diagonally through the matrix and perform four operations: 1) It will take the value of the ith+1 index, 2) it will take the value of the jth-1 index,3) it will check to see if a match is possible, if so, it will take 1 + the value of the ith+1,jth-1 index, and 4) It will take value in the case of the string being spliced. 
+
+\bibliographystyle{abbrv}
+\bibliography{\jobname}
 
 \end{document}
