@@ -177,7 +177,7 @@ __global__ void nussinovCuda(int * table, char * sequence,int * len1, int j, int
 			}
 		}
 	}
-	__syncthreads();
+	// __syncthreads();
 	// printTableGPU(table, sequence, len1);
 }
 
@@ -193,7 +193,7 @@ int main(void) {
 	size_t len = 0;
 	ssize_t read;
  
-	stream = fopen("sequence.fasta", "r");//sequence.fasta
+	stream = fopen("test.txt", "r");//sequence.fasta
 	if (stream == NULL)
 		exit(EXIT_FAILURE);
 	int k = 0;
@@ -208,14 +208,14 @@ int main(void) {
 			if (myword[mover+read-1] == '\n')
 				myword[mover+read-1] = '\0';
 			mover+= read-1;
-			// if (k++ == 1000) break;
+			if (k++ == 50) break;
 		}
 	}
 
 	free(line);
 	fclose(stream);
 
-    char * allSequences[]= { myword
+    char * allSequences[]= { myword,
 	// "GGAAACACCU",
 	// "GGAUACGGCCAUACUGCGCAGAAAGCAC",
 	//  "GGAUACGGCCAUACUGCGCAGAAAGCACCGCUUCCCAUCCGAACAGCG",
@@ -286,13 +286,13 @@ int main(void) {
     int size = sizeof(int);
     int size2 = (*len) * sizeof(char);
     int size3 = (*len) * (*len) * sizeof(int);
-    printf("didnt Failed seq\n");
+    printf("Allocated memory on yhe host\n");
 
     // creates vector x for holding the "table"
     int * x;
     // allocate memory for x
     x = (int*)malloc( (*len) * (*len) * sizeof(int) );
-    printf("didnt Failed x\n");
+    
 
     // holds pointer location for x
     int* hold_x = x;
@@ -307,9 +307,8 @@ int main(void) {
     //Allocate memory on device
     cudaMalloc((void **)&length, size);
     cudaMalloc((void **)&sequence, size2);
-    printf("Failed cudal malloc sequence\n");
     cudaMalloc((void **)&table, size3);
-    printf("Failed cudal malloc table\n");
+    printf("Allocated memory on the device\n");
     // Copy inputs to device
 	cudaMemcpy(length, &a, size, cudaMemcpyHostToDevice);
 	cudaMemcpy(sequence, hold_seq, size2, cudaMemcpyHostToDevice);
@@ -319,19 +318,15 @@ int main(void) {
     int numOfBlocks;
 	int numOfThreads;
 	int sharedVel = 0;
-	int maxThreads=1000;
+	int maxThreads=1024;
 	numOfThreads= maxThreads;
-    int maxT = 5000;
+    int maxT = 20024;
 	cudaEventRecord(start);
 
 	
     for (int j =1;j<(*len);j++)
     {
         numOfBlocks = min( (*len)-j, maxT);
-        // if(numOfBlocks > maxT)
-        // {
-        //     numOfBlocks = maxT;
-        // }
 		sharedVel = j+3;
 		numOfThreads = min(sharedVel,maxThreads);
 
@@ -339,7 +334,7 @@ int main(void) {
 
         nussinovCuda<<<numOfBlocks,numOfThreads,sharedVel*sizeof(int)>>>(table, sequence,length,j,numOfBlocks,numOfThreads,sharedVel);
 		// cudaDeviceSynchronize();
-		cudaStreamSynchronize(0);
+		// cudaStreamSynchronize(0);
     }
 
 	cudaEventRecord(stop);
@@ -370,6 +365,13 @@ int main(void) {
 		// // cudaMemcpy(x, table, size3, cudaMemcpyDeviceToHost);
 	// printTable(x,seq,len);
 		
+
+
+	// for error checking
+
+	cudaError_t err = cudaGetLastError();  // add
+	if (err != cudaSuccess) printf("CUDA error: %s\n", cudaGetErrorString(err) );
+	// cudaProfilerStop();
 	// Free up memory on the device
     cudaFree(sequence); cudaFree(length);  cudaFree(x);
     free(hold_len); free(hold_x);
