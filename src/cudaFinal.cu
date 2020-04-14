@@ -208,7 +208,7 @@ int main(void) {
 			if (myword[mover+read-1] == '\n')
 				myword[mover+read-1] = '\0';
 			mover+= read-1;
-			if (k++ == 50) break;
+			if (k++ == 30) break;
 		}
 	}
 
