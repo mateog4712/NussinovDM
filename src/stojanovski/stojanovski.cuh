@@ -4,10 +4,28 @@
  *     Proc. ICT Innovations. https://doi.org/10.1007/978-3-642-28664-3_26
  *
  * Note that we skipped implementing kernel1, as it wasn't shown to have a noticeable effect in the original paper.
+ * However, note that Chang et al. (2010) had proposed *three* kernels, not just two.
+ *
+ * Note also that this version does not shift the transpose by one location and then over-allocate the matrix to ensure
+ * 16B alignment. The efficacy of the shifting depends on the alignment and the alignment is a global consideration that
+ * should be done for all algorithms.
  */
 
 #pragma once
 
+#include <vector>
+
+namespace util {
+
+void init_streams( cudaStream_t *streams, uint32_t const num_streams )
+{
+    for( auto i = 0u; i < num_streams; ++i )
+    {
+        cudaStreamCreate( &streams[ i ] );
+    }
+}
+
+} // namespace util
 namespace stoja {
 
 template < typename T >
@@ -90,21 +108,19 @@ __global__ void kernel2( T * table, char const * sequence, int n, uint32_t i, ui
 template < typename T >
 void nussinovCuda( T * table, char const * sequence, uint32_t const n )
 {
+    auto const num_streams = 128u; // limit for Compute Capability 7.0
     auto const block_size = 128u;
     auto const shared_mem_size = block_size * sizeof( table[ 0 ] );
+
+    std::vector< cudaStream_t > streams( num_streams );
+    util::init_streams( streams.data(), num_streams );
+
 
     for( auto i = 1u; i < n; ++i )
     {
         for( auto j = 0; j < n - i; ++j )
         {
-            stoja::kernel2<<< 1u, block_size, shared_mem_size >>>( table, sequence, n, j, i + j );
-            cudaError_t error = cudaGetLastError();
-            if(error != cudaSuccess)
-            {
-                // print the CUDA error message and exit
-                printf("CUDA error: %u %u %s\n", i, j, cudaGetErrorString(error));
-                exit(-1);
-            }
+            stoja::kernel2<<< 1u, block_size, shared_mem_size, streams[ j % num_streams ] >>>( table, sequence, n, j, i + j );
         }
         cudaDeviceSynchronize();
     }
