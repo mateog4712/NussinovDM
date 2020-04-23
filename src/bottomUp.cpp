@@ -51,7 +51,7 @@ void nussinovBottom(string sequence){
 	}
 
 	//cout<<endl;
-	printTable(table,sequence);
+	// printTable(table,sequence);
 
 	string structure = "";
 	uint16_t energy = table[0][len-1];

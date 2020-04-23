@@ -107,11 +107,11 @@ void nussinov(string sequence){
  	uint16_t energy = table[0][len-1];
 
 	structure = traceback(table, 0, len-1, sequence);
-	printTableFile(table,sequence,"check2");
+	// printTableFile(table,sequence,"check2");
 
 	//  cout << sequence << endl;
 	//cout << structure << endl;
- 	cout << energy << endl;
+ 	// cout << energy << endl;
 
 }
 

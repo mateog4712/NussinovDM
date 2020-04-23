@@ -50,6 +50,10 @@ vector
 string
 -
 
+/home/mgray7/Documents/NussinovDM/src/cases.hpp
+string
+-
+
 /home/mgray7/Documents/NussinovDM/src/main.cpp
 vector
 -
@@ -83,6 +87,10 @@ simd.hpp
 /home/mgray7/Documents/NussinovDM/src/simd.hpp
 optPar.hpp
 /home/mgray7/Documents/NussinovDM/src/optPar.hpp
+fstream
+-
+cases.hpp
+/home/mgray7/Documents/NussinovDM/src/cases.hpp
 
 /home/mgray7/Documents/NussinovDM/src/optPar.hpp
 vector
@@ -191,6 +199,8 @@ string
 -
 testCases.hpp
 /home/mgray7/Documents/NussinovDM/src/testCases.hpp
+iostream
+-
 
 /home/mgray7/Documents/NussinovDM/src/testCases.hpp
 vector
