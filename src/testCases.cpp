@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include "testCases.hpp"
+#include <iostream>
 using namespace std;
 
 string s0 = "GGAAACACCU";
@@ -50,4 +51,18 @@ void createData(vector<string> &testData, int NOS, int maxSize){
 	testData.push_back(sequence);
 	}
 }
+string createDataS(int size){
 
+	const vector<char> bases = {'A','C','G','T'}; 
+	string sequence = "";
+		for(int j = 0; j<size;j++){
+
+		    int random = rand()%4;
+		    char base = bases[random];
+		    sequence = sequence + base;
+
+		}
+		// cout<< sequence <<endl;
+		cout << "1 done" << endl;
+		return sequence;
+}
