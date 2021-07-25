@@ -20,7 +20,7 @@ __device__ bool match(char * sequence,int i,int j)
 	{
 		if ( ((sequence[i] == 'A' and sequence[j] == 'U' ) or (sequence[i] == 'G' and sequence[j] == 'U' )) )
 			return 2;
-		else (sequence[i] == 'G' and sequence[j] == 'C' ) 
+		else if (sequence[i] == 'G' and sequence[j] == 'C' ) 
 			return 3;
 
 	}
