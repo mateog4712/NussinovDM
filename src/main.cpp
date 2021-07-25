@@ -28,13 +28,15 @@ int main() {
 
 	int numofIter = 1;
 	double avg = 0.0;
-	// cout << "Baseline: ";
+	cout << "Baseline: ";
 	vector<string> test = {seq_3200, seq2_3200};
+	// return 0;
+
 	for (int j=0;j<numofIter;j++)
 	{
 		auto start = chrono::steady_clock::now();
 		// for(auto i=0;i<testData.size();i++){
-			nussinovSimd(seq_10k);
+			nussinovSimd(seq2_3200);
 			// cout << seq_10k.length();
 		// }
 		auto end = chrono::steady_clock::now();
